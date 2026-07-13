@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expivot — From Employment to Expertise</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#1F6B6B;--teal-d:#0D3D3D;--teal-m:#2A8A8A;--teal-l:#E8F4F4;
+  --gold:#B8923A;--gold-l:#D4A84A;--gold-bg:#FDF4E3;
+  --bg:#F5F2EA;--card:#FEFCF7;--border:#E8E0CC;
+  --text:#1E1E1E;--text-m:#5A5240;--text-l:#9A8E7A;
+  --green:#2E8B4A;--green-l:#F0FAF4;
+  --amber:#C08A2A;--amber-l:#FDF6E8;
+  --red:#C04040;
+  --pjs:'Plus Jakarta Sans',sans-serif;
+  --inter:'Inter',sans-serif;
+  --r:8px;--rl:12px;--rxl:16px;
+}
+html,body{height:100%;overflow:hidden}
+body{font-family:var(--inter);color:var(--text);background:var(--teal-d)}
+
+/* ── SCREENS ── */
+.scr{display:none;height:100vh;flex-direction:column}
+.scr.on{display:flex}
+
+/* ══════════════════════════════
+   LANDING
+══════════════════════════════ */
+#land{background:var(--teal-d);overflow:hidden}
+
+.land-top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 36px;flex-shrink:0
+}
+.land-logo{font-family:var(--pjs);font-size:22px;font-weight:800;color:#fff;letter-spacing:-.4px}
+.land-logo em{color:var(--gold-l);font-style:normal}
+.land-url{font-size:12px;color:rgba(255,255,255,.35);letter-spacing:.04em}
+
+.land-body{
+  flex:1;display:grid;
+  grid-template-columns:220px 1fr 220px;
+  grid-template-rows:1fr auto 1fr;
+  gap:0;padding:0 36px 0;
+  min-height:0
+}
+
+/* LEFT COLUMN */
+.land-left{
+  grid-column:1;grid-row:1/4;
+  display:flex;flex-direction:column;justify-content:center;
+  gap:20px;padding-right:28px;border-right:1px solid rgba(255,255,255,.08)
+}
+.land-block{}
+.land-block-title{
+  font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold-l);margin-bottom:10px
+}
+.stat-row{display:flex;flex-direction:column;gap:8px}
+.stat-item{display:flex;align-items:baseline;gap:8px}
+.stat-n{font-family:var(--pjs);font-size:22px;font-weight:800;color:#fff}
+.stat-l{font-size:11px;color:rgba(255,255,255,.45);line-height:1.4;flex:1}
+.who-line{font-size:12px;color:rgba(255,255,255,.55);line-height:1.6;padding:8px 0;border-top:1px solid rgba(255,255,255,.08)}
+.who-line:first-child{border-top:none}
+
+/* CENTRE COLUMN */
+.land-centre{
+  grid-column:2;grid-row:1/4;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:0 36px;text-align:center
+}
+.land-eyebrow{
+  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold-l);margin-bottom:14px;opacity:.7
+}
+.land-h1{
+  font-family:var(--pjs);font-size:38px;font-weight:800;color:#fff;
+  line-height:1.1;letter-spacing:-1px;margin-bottom:12px
+}
+.land-h1 em{color:var(--gold-l);font-style:normal}
+.land-tagline{
+  font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;
+  max-width:320px;margin-bottom:28px
+}
+.land-cta{
+  background:var(--gold);color:#fff;border:none;border-radius:var(--r);
+  padding:14px 36px;font-size:15px;font-weight:700;cursor:pointer;
+  font-family:var(--inter);letter-spacing:-.2px;
+  transition:background .15s,transform .1s;
+  box-shadow:0 4px 20px rgba(184,146,58,.35)
+}
+.land-cta:hover{background:var(--gold-l);transform:translateY(-1px)}
+.land-cta:active{transform:translateY(0)}
+.land-proof{
+  margin-top:20px;display:flex;align-items:center;gap:8px;
+  font-size:11px;color:rgba(255,255,255,.35)
+}
+.land-proof-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
+.land-proof-avatars{display:flex;gap:-4px}
+.land-av{
+  width:22px;height:22px;border-radius:50%;
+  border:1.5px solid var(--teal-d);margin-left:-5px;
+  font-size:8px;font-weight:700;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-family:var(--pjs)
+}
+.land-av:first-child{margin-left:0}
+
+/* RIGHT COLUMN */
+.land-right{
+  grid-column:3;grid-row:1/4;
+  display:flex;flex-direction:column;justify-content:center;
+  gap:20px;padding-left:28px;border-left:1px solid rgba(255,255,255,.08)
+}
+.step-list{display:flex;flex-direction:column;gap:10px}
+.step-item{display:flex;align-items:flex-start;gap:10px}
+.step-num{
+  width:22px;height:22px;border-radius:50%;background:var(--gold);
+  color:#fff;font-size:10px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:1px;font-family:var(--pjs)
+}
+.step-text{}
+.step-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:1px}
+.step-desc{font-size:11px;color:rgba(255,255,255,.4);line-height:1.4}
+.outcome-list{display:flex;flex-direction:column;gap:8px}
+.outcome-item{display:flex;align-items:flex-start;gap:8px}
+.outcome-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+.outcome-text{font-size:11px;color:rgba(255,255,255,.5);line-height:1.5}
+
+/* FOOTER STRIP */
+.land-footer{
+  padding:10px 36px;border-top:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0
+}
+.land-footer-l{font-size:11px;color:rgba(255,255,255,.25)}
+.land-footer-r{font-size:11px;color:rgba(255,255,255,.25)}
+
+/* ══════════════════════════════
+   APP NAV (used on S1-S11)
+══════════════════════════════ */
+.app-nav{
+  height:56px;background:var(--teal-d);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;flex-shrink:0
+}
+.app-logo{font-family:var(--pjs);font-size:18px;font-weight:800;color:#fff}
+.app-logo em{color:var(--gold-l);font-style:normal}
+.app-progress{display:flex;align-items:center;gap:6px}
+.app-pd{width:24px;height:3px;border-radius:2px;background:rgba(255,255,255,.15)}
+.app-pd.on{background:var(--gold-l)}
+.app-step-label{font-size:11px;color:rgba(255,255,255,.4);margin-left:8px}
+.app-avatar{
+  width:32px;height:32px;border-radius:50%;background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:#fff;cursor:pointer;font-family:var(--pjs)
+}
+
+/* ══════════════════════════════
+   SHARED SCREEN BODY
+══════════════════════════════ */
+.scr-body{
+  flex:1;background:var(--bg);overflow-y:auto;
+  display:flex;align-items:flex-start;justify-content:center;
+  padding:32px 20px
+}
+.scr-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--rxl);padding:32px;
+  width:100%;max-width:560px
+}
+.scr-eyebrow{
+  font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:8px
+}
+.scr-h{
+  font-family:var(--pjs);font-size:20px;font-weight:700;
+  color:var(--teal-d);line-height:1.3;margin-bottom:6px
+}
+.scr-sub{font-size:13px;color:var(--text-l);line-height:1.65;margin-bottom:20px}
+.field-label{font-size:12px;font-weight:600;color:var(--text-m);margin-bottom:5px;display:block}
+.field-note{font-size:11px;color:var(--text-l);margin-bottom:6px}
+textarea,input[type=text],input[type=email],input[type=password]{
+  width:100%;border:1.5px solid var(--border);border-radius:var(--r);
+  background:#fff;padding:10px 13px;font-size:13px;
+  font-family:var(--inter);color:var(--text);outline:none;
+  transition:border-color .15s;line-height:1.6
+}
+textarea:focus,input:focus{border-color:var(--teal)}
+textarea{resize:none}
+.btn-primary{
+  background:var(--teal);color:#fff;border:none;border-radius:var(--r);
+  padding:12px 24px;font-size:14px;font-weight:600;cursor:pointer;
+  font-family:var(--inter);transition:background .15s;width:100%;margin-top:10px
+}
+.btn-primary:hover{background:var(--teal-m)}
+.btn-primary:disabled{background:var(--border);color:var(--text-l);cursor:not-allowed}
+.btn-gold-full{
+  background:var(--gold);color:#fff;border:none;border-radius:var(--r);
+  padding:12px 24px;font-size:14px;font-weight:600;cursor:pointer;
+  font-family:var(--inter);transition:background .15s;width:100%;margin-top:10px
+}
+.btn-gold-full:hover{background:var(--gold-l)}
+.btn-sec{
+  background:#fff;color:var(--text-m);border:1.5px solid var(--border);
+  border-radius:var(--r);padding:10px 24px;font-size:13px;font-weight:500;
+  cursor:pointer;font-family:var(--inter);width:100%;margin-top:8px;transition:border-color .15s
+}
+.btn-sec:hover{border-color:var(--teal);color:var(--teal)}
+.back-link{
+  display:inline-flex;align-items:center;gap:4px;font-size:12px;
+  color:var(--text-l);cursor:pointer;background:none;border:none;
+  font-family:var(--inter);padding:0;margin-bottom:16px
+}
+.back-link:hover{color:var(--teal)}
+
+/* tabs */
+.tabs{display:flex;border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px}
+.tab{
+  flex:1;padding:8px 6px;font-size:12px;font-weight:500;
+  color:var(--text-l);background:var(--bg);border:none;cursor:pointer;
+  text-align:center;border-right:1px solid var(--border);
+  transition:all .12s;font-family:var(--inter)
+}
+.tab:last-child{border-right:none}
+.tab.on{background:var(--teal);color:#fff;font-weight:600}
+.tab-panel{display:none}
+.tab-panel.on{display:block}
+
+/* brief cards */
+.brief-card{
+  border:1.5px solid var(--border);border-radius:var(--rl);
+  padding:14px;background:#fff;cursor:pointer;margin-bottom:8px;transition:all .12s
+}
+.brief-card:hover{border-color:var(--teal)}
+.brief-card.sel{border:2px solid var(--teal);background:var(--teal-l)}
+.brief-tag{
+  font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--teal);background:var(--teal-l);border-radius:4px;padding:2px 7px;
+  display:inline-block;margin-bottom:6px
+}
+.brief-card.sel .brief-tag{background:var(--teal);color:#fff}
+.brief-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;line-height:1.4}
+.brief-meta{font-size:11px;color:var(--text-l)}
+
+/* offer chips */
+.chip{border-radius:var(--rl);padding:10px 12px;margin-bottom:8px;transition:all .25s}
+.chip.pend{background:var(--bg);border:1.5px dashed var(--border)}
+.chip.done{background:var(--teal-l);border:1.5px solid var(--teal)}
+.chip.bld{background:var(--amber-l);border:1.5px dashed var(--amber);animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.chip-lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.chip.pend .chip-lbl{color:var(--text-l)}
+.chip.done .chip-lbl{color:var(--teal)}
+.chip.bld .chip-lbl{color:var(--amber)}
+.chip-val{font-size:12px;line-height:1.5}
+.chip.pend .chip-val{color:var(--text-l)}
+.chip.done .chip-val{color:var(--text)}
+.chip.bld .chip-val{color:var(--amber)}
+
+/* refine row */
+.refine-row{
+  border:1px solid var(--border);border-radius:var(--r);
+  background:var(--bg);padding:10px 12px;margin-top:8px
+}
+.refine-lbl{font-size:11px;font-weight:600;color:var(--text-m);margin-bottom:6px}
+.refine-inner{display:flex;gap:8px;align-items:flex-start}
+.refine-inner textarea{
+  flex:1;min-height:40px;font-size:12px;border-color:var(--border);
+  padding:7px 10px;background:#fff
+}
+.refine-btn{
+  background:var(--teal-l);color:var(--teal);border:1px solid var(--teal);
+  border-radius:var(--r);padding:7px 12px;font-size:12px;font-weight:600;
+  cursor:pointer;white-space:nowrap;font-family:var(--inter);flex-shrink:0
+}
+.refine-btn:hover{background:var(--teal);color:#fff}
+
+/* loading */
+.loading{text-align:center;padding:20px 0}
+.dots{display:inline-flex;gap:5px;align-items:center}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:d 1.2s ease-in-out infinite}
+.dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+@keyframes d{0%,80%,100%{transform:scale(.4);opacity:.4}40%{transform:scale(1);opacity:1}}
+.load-txt{font-size:12px;color:var(--text-l);margin-top:8px}
+
+/* match note */
+.match-note{
+  font-size:12px;color:#085041;background:#E1F5EE;
+  border:1px solid #5DCAA5;border-radius:var(--r);
+  padding:9px 12px;margin-bottom:14px;line-height:1.5
+}
+
+/* impact card */
+.impact-card{border:1.5px solid var(--border);border-radius:var(--rl);padding:14px;background:#fff;margin-bottom:10px}
+.impact-card.opt{border-style:dashed}
+.impact-lbl{font-size:11px;font-weight:600;color:var(--teal);margin-bottom:5px}
+.impact-lbl.opt{color:var(--text-l)}
+.impact-note{font-size:11px;color:var(--text-l);margin-bottom:6px}
+.impact-ta{width:100%;border:none;background:transparent;font-size:13px;font-family:var(--inter);color:var(--text-m);line-height:1.6;min-height:68px;resize:none;outline:none}
+.err{font-size:12px;color:var(--red);background:#FDF0F0;border:1px solid #f0c0c0;border-radius:var(--r);padding:8px 12px;margin-top:8px}
+
+/* dials */
+.dial-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.dial{border-radius:var(--rxl);padding:16px;text-align:center;border:2px solid var(--border);background:#fff;cursor:pointer;transition:all .15s}
+.dial:hover{border-color:var(--teal)}
+.dial.green{border-color:var(--green);background:var(--green-l)}
+.dial.amber{border-color:var(--amber);background:var(--amber-l)}
+.dial-circle{width:48px;height:48px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700}
+.dial.green .dial-circle{background:var(--green);color:#fff}
+.dial.amber .dial-circle{background:var(--amber);color:#fff}
+.dial.default .dial-circle{background:var(--border);color:var(--text-l)}
+.dial-lbl{font-size:12px;font-weight:600;color:var(--text);margin-bottom:3px}
+.dial-status{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.dial.green .dial-status{color:var(--green)}
+.dial.amber .dial-status{color:var(--amber)}
+
+/* profile sections */
+.profile-hl{font-family:var(--pjs);font-size:18px;font-weight:700;color:var(--teal-d);line-height:1.35;margin-bottom:10px}
+.profile-summary{font-size:13px;color:var(--text-m);line-height:1.7;margin-bottom:14px}
+.profile-sec{background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:12px 14px;margin-bottom:8px}
+.profile-sec-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin-bottom:6px}
+.profile-sec-body{font-size:13px;color:var(--text);line-height:1.65}
+.profile-sec-body ul{padding-left:14px}.profile-sec-body li{margin-bottom:3px}
+.price-pill{display:inline-block;background:var(--teal);color:#fff;border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;margin-top:4px}
+.cta-strip{background:var(--teal-l);border:1px solid var(--teal);border-radius:var(--rl);padding:14px;text-align:center;margin-top:14px}
+.cta-strip p{font-size:13px;color:#085041;line-height:1.6;margin-bottom:10px}
+
+/* project card */
+.proj-card{border:1.5px solid var(--border);border-radius:var(--rl);padding:16px;background:#fff;margin-bottom:10px;cursor:pointer;transition:border-color .12s}
+.proj-card:hover{border-color:var(--teal)}
+.proj-card.top{border-color:var(--teal);border-width:2px}
+.proj-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px}
+.proj-tag{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--teal);background:var(--teal-l);border-radius:4px;padding:2px 7px}
+.proj-match{font-size:12px;font-weight:700;color:var(--green)}
+.proj-title{font-size:14px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:4px;font-family:var(--pjs)}
+.proj-meta{font-size:12px;color:var(--text-l)}
+.proj-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.proj-chip{font-size:11px;color:var(--text-m);background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:3px 9px}
+
+/* compact clause */
+.clause{display:flex;gap:12px;padding:14px;border:1px solid var(--border);border-radius:var(--rl);background:#fff;margin-bottom:8px}
+.clause-num{width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--pjs)}
+.clause-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
+.clause-desc{font-size:12px;color:var(--text-l);line-height:1.5}
+
+/* success */
+.success-card{border:1px solid var(--border);border-radius:var(--rl);padding:14px;background:#fff;margin-bottom:8px}
+.success-lbl{font-size:11px;font-weight:600;color:var(--text-l);margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+.success-val{font-size:13px;color:var(--text);line-height:1.5}
+
+/* cohort members */
+.member-row{display:flex;gap:0;align-items:center;margin-bottom:10px}
+.member-av{width:28px;height:28px;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;margin-left:-7px;font-family:var(--pjs)}
+.member-av:first-child{margin-left:0}
+.member-note{font-size:12px;color:var(--text-l);margin-left:10px}
+
+/* pill */
+.pill{display:inline-block;border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600}
+.pill-green{background:var(--green-l);color:var(--green)}
+.pill-amber{background:var(--amber-l);color:var(--amber)}
+.pill-teal{background:var(--teal-l);color:var(--teal)}
+
+/* toggle */
+.toggle{width:40px;height:22px;border-radius:11px;background:var(--border);cursor:pointer;position:relative;transition:background .2s;flex-shrink:0}
+.toggle.on{background:var(--teal)}
+.toggle::after{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:2px;left:2px;transition:left .2s}
+.toggle.on::after{left:20px}
+
+/* sign in */
+.si-divider{display:flex;align-items:center;gap:10px;margin:14px 0;font-size:12px;color:var(--text-l)}
+.si-divider::before,.si-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.si-li{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:1.5px solid var(--border);border-radius:var(--r);padding:10px;font-size:13px;font-weight:500;color:var(--text-m);cursor:pointer;background:#fff;transition:border-color .15s;font-family:var(--inter)}
+.si-li:hover{border-color:var(--teal)}
+.si-footer{text-align:center;font-size:12px;color:var(--text-l);margin-top:14px}
+.si-footer a{color:var(--teal);cursor:pointer}
+
+/* onboard features */
+.ob-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px;text-align:left}
+.ob-feat{background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:12px}
+.ob-feat-icon{font-size:18px;margin-bottom:5px}
+.ob-feat-title{font-size:12px;font-weight:600;color:var(--teal-d);margin-bottom:2px}
+.ob-feat-desc{font-size:11px;color:var(--text-l);line-height:1.5}
+
+/* financial */
+.formula-card{background:var(--gold-bg);border:1px solid #E8D5A0;border-radius:var(--rl);padding:18px;margin-bottom:14px;text-align:center}
+.formula-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:6px}
+.formula-main{font-family:var(--pjs);font-size:17px;font-weight:700;color:var(--teal-d);margin-bottom:5px}
+.formula-note{font-size:11px;color:var(--text-l);line-height:1.5}
+.checkbox-row{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1px solid var(--border);border-radius:var(--r);background:#fff;margin-bottom:14px}
+.checkbox-lbl{font-size:12px;color:var(--text-m);line-height:1.6}
+</style>
+</head>
+<body>
+
+<!-- ════ LANDING ════ -->
+<div id="land" class="scr on">
+
+  <div class="land-top">
+    <div class="land-logo">Expi<em>vot</em></div>
+    <div class="land-url">expivot.in · IIT Bombay AIDT2</div>
+  </div>
+
+  <div class="land-body">
+
+    <!-- LEFT -->
+    <div class="land-left">
+      <div class="land-block">
+        <div class="land-block-title">The problem</div>
+        <div class="stat-row">
+          <div class="stat-item">
+            <div class="stat-n">84%</div>
+            <div class="stat-l">of Indian professionals feel unprepared for career transitions</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-n">3yr</div>
+            <div class="stat-l">average delay caused by lack of positioning clarity</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-n">90M</div>
+            <div class="stat-l">gig workers projected in India by 2030 — the market is real</div>
+          </div>
+        </div>
+      </div>
+      <div class="land-block">
+        <div class="land-block-title">Who it's for</div>
+        <div class="who-line">Mid-career professionals · 35–55 · 10+ years experience</div>
+        <div class="who-line">Employed, between roles, or recently exited</div>
+        <div class="who-line">Deep expertise · no structured way to package it</div>
+      </div>
+    </div>
+
+    <!-- CENTRE -->
+    <div class="land-centre">
+      <div class="land-eyebrow">Expert × Pivot</div>
+      <div class="land-h1">From employment<br>to <em>expertise.</em><br>On your terms.</div>
+      <div class="land-tagline">The guided platform that catches you the moment you decide to go independent — and doesn't let go until your first project is paid.</div>
+      <button class="land-cta" onclick="show('onboard')">Onboard me →</button>
+      <div class="land-proof">
+        <div class="land-proof-dot"></div>
+        <div class="land-proof-avatars">
+          <div class="land-av" style="background:#1F6B6B">RK</div>
+          <div class="land-av" style="background:#B8923A">KD</div>
+          <div class="land-av" style="background:#2E8B4A">SM</div>
+          <div class="land-av" style="background:#1F6B6B">KI</div>
+        </div>
+        <span>12 professionals onboarded this month</span>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="land-right">
+      <div class="land-block">
+        <div class="land-block-title">How it works</div>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <div class="step-title">AI builds your offer</div>
+              <div class="step-desc">Future-first coaching surfaces hidden expertise in minutes</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <div class="step-title">Get ready to go live</div>
+              <div class="step-desc">Financial consent + launch cohort — both tracked on your dashboard</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <div class="step-title">Projects find you</div>
+              <div class="step-desc">Verified matches — you don't apply, you're approached</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-text">
+              <div class="step-title">Authority compounds</div>
+              <div class="step-desc">Every project makes your profile richer and your rate stronger</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="land-block">
+        <div class="land-block-title">What you get</div>
+        <div class="outcome-list">
+          <div class="outcome-item"><div class="outcome-icon">🛡️</div><div class="outcome-text">Expivot Compact — escrow, no-poach, NDA before any conversation</div></div>
+          <div class="outcome-item"><div class="outcome-icon">🤝</div><div class="outcome-text">Launch cohort — peers at your exact stage, not alone in the transition</div></div>
+          <div class="outcome-item"><div class="outcome-icon">📈</div><div class="outcome-text">Authority profile that gets richer with every project you complete</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="land-footer">
+    <div class="land-footer-l">© 2026 Expivot · Mumbai · Built for India's mid-career professionals</div>
+    <div class="land-footer-r">IIT Bombay AIDT2 EO-15/2026 · Capstone Project</div>
+  </div>
+</div>
+
+<!-- ════ SIGN IN ════ -->
+<div id="signin" class="scr">
+  <div style="background:var(--teal-d);height:4px;flex-shrink:0"></div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:32px 20px;background:var(--bg)">
+    <div style="width:100%;max-width:400px">
+      <div style="font-family:var(--pjs);font-size:22px;font-weight:800;color:var(--teal-d);text-align:center;margin-bottom:3px">Expi<em style="color:var(--gold);font-style:normal">vot</em></div>
+      <div style="font-size:13px;color:var(--text-l);text-align:center;margin-bottom:24px">Sign in to start building your offer</div>
+      <div class="scr-card" style="padding:24px">
+        <button class="si-li" onclick="show('onboard')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Continue with LinkedIn
+        </button>
+        <div class="si-divider">or sign in with email</div>
+        <label class="field-label">Email</label>
+        <input type="email" placeholder="you@example.com" style="margin-bottom:12px">
+        <label class="field-label">Password</label>
+        <input type="password" placeholder="••••••••" style="margin-bottom:4px">
+        <div style="text-align:right;margin-bottom:14px"><button style="background:none;border:none;font-size:12px;color:var(--teal);cursor:pointer;font-family:var(--inter)">Forgot password?</button></div>
+        <button class="btn-primary" onclick="show('onboard')">Sign in</button>
+        <div class="si-footer">No account? <a onclick="show('onboard')">Create one free</a></div>
+      </div>
+      <div style="text-align:center;margin-top:14px">
+        <button style="background:none;border:none;font-size:12px;color:var(--text-l);cursor:pointer;font-family:var(--inter)" onclick="show('land')">← Back to Expivot</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ ONBOARDING ════ -->
+<div id="onboard" class="scr">
+  <div style="background:var(--teal-d);height:4px;flex-shrink:0"></div>
+  <div class="scr-body">
+    <div class="scr-card" style="text-align:center">
+      <button class="back-link" onclick="show('land')" style="display:inline-flex;margin-bottom:12px">← Back to home</button>
+      <div style="font-size:40px;margin-bottom:14px">🚀</div>
+      <div class="scr-eyebrow">Welcome to Expivot</div>
+      <div class="scr-h">You're about to build your independent consulting offer</div>
+      <div class="scr-sub">Here's what happens in the next few minutes.</div>
+      <div class="ob-grid">
+        <div class="ob-feat"><div class="ob-feat-icon">🧠</div><div class="ob-feat-title">AI offer builder</div><div class="ob-feat-desc">Tell us your ideal week. We surface your offer from your career.</div></div>
+        <div class="ob-feat"><div class="ob-feat-icon">📊</div><div class="ob-feat-title">Readiness dashboard</div><div class="ob-feat-desc">Three dials track your financial, cohort, and profile readiness.</div></div>
+        <div class="ob-feat"><div class="ob-feat-icon">🤝</div><div class="ob-feat-title">Launch cohort</div><div class="ob-feat-desc">Peers at your stage. Structured sessions. Not alone.</div></div>
+        <div class="ob-feat"><div class="ob-feat-icon">🛡️</div><div class="ob-feat-title">Protected projects</div><div class="ob-feat-desc">Compact — escrow, no-poach, NDA — before any conversation.</div></div>
+      </div>
+      <button class="btn-primary" onclick="goToS('s1')">Start building my offer →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ S1 — FUTURE-FIRST COACHING ════ -->
+<div id="s1" class="scr">
+  <div class="app-nav">
+    <div class="app-logo">Expi<em>vot</em></div>
+    <div class="app-progress">
+      <div class="app-pd on"></div><div class="app-pd"></div><div class="app-pd"></div>
+      <div class="app-step-label">Step 1 of 3</div>
+    </div>
+    <div class="app-avatar">TM</div>
+  </div>
+  <div class="scr-body">
+    <div class="scr-card">
+      <div class="scr-eyebrow">Your future vision</div>
+      <div class="scr-h">"What does your ideal week look like as an independent professional?"</div>
+      <div class="scr-sub">Don't think about what's realistic yet — describe what you'd love it to look like.</div>
+      <div class="tabs">
+        <button class="tab on" onclick="stab('type',this)">✍️ Type answer</button>
+        <button class="tab" onclick="stab('cv',this)">📄 Paste CV</button>
+        <button class="tab" onclick="stab('li',this)">💼 LinkedIn</button>
+      </div>
+      <div id="tp-type" class="tab-panel on">
+        <div class="field-note">Describe who you'd work with, what problems you'd solve, how many days a week</div>
+        <textarea id="s1-text" rows="5" placeholder="I'd like to work on a few projects without worrying about what time of day or day of week I work — as long as I deliver by the deadline. I prefer customer experience improvement for organisations with walk-in offices..."></textarea>
+        <div style="font-size:11px;color:var(--text-l);margin-top:4px;text-align:right">🎙 Voice-to-text — type or speak</div>
+      </div>
+      <div id="tp-cv" class="tab-panel">
+        <div class="field-note">Paste your CV text below — copy from Word, PDF, or any document</div>
+        <textarea id="s1-cv" rows="8" placeholder="Paste your full CV or resume text here. Copy it from Word, Google Docs, or PDF and paste directly..."></textarea>
+        <div style="font-size:11px;color:var(--text-l);margin-top:5px">Tip — open your CV, select all (Ctrl+A), copy (Ctrl+C), then paste here</div>
+      </div>
+      <div id="tp-li" class="tab-panel">
+        <div class="field-note">Paste your LinkedIn About section or summary</div>
+        <textarea id="s1-li" rows="6" placeholder="Paste your LinkedIn About section here..."></textarea>
+      </div>
+      <div id="e1" class="err" style="display:none"></div>
+      <button class="btn-primary" onclick="goS2()">Continue →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ S2 — DEMAND-FIRST ANCHOR ════ -->
+<div id="s2" class="scr">
+  <div class="app-nav">
+    <div class="app-logo">Expi<em>vot</em></div>
+    <div class="app-progress">
+      <div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd"></div>
+      <div class="app-step-label">Step 2 of 3</div>
+    </div>
+    <div class="app-avatar">TM</div>
+  </div>
+  <div class="scr-body">
+    <div class="scr-card">
+      <button class="back-link" onclick="goToS('s1')">← Edit my answer</button>
+      <div class="scr-eyebrow">Find your brief</div>
+      <div class="scr-h">Which of these sounds like your kind of work?</div>
+      <div class="scr-sub">Three real buyer briefs matched to your background. Select the one that resonates most.</div>
+      <div id="s2-loading" class="loading">
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="load-txt">Reading your answer — generating matched briefs</div>
+      </div>
+      <div id="s2-content" style="display:none">
+        <div id="s2-hint" class="match-note"></div>
+        <div id="s2-briefs"></div>
+        <div id="e2" class="err" style="display:none"></div>
+        <button class="btn-primary" id="s2-btn" onclick="goS3()" disabled>This is my kind of work →</button>
+        <button class="btn-sec" onclick="goToS('s1')">Edit my answer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ S3 — PROGRESSIVE OFFER REVEAL ════ -->
+<div id="s3" class="scr">
+  <div class="app-nav">
+    <div class="app-logo">Expi<em>vot</em></div>
+    <div class="app-progress">
+      <div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div>
+      <div class="app-step-label">Step 3 of 3</div>
+    </div>
+    <div class="app-avatar">TM</div>
+  </div>
+  <div class="scr-body" style="align-items:flex-start">
+    <div style="width:100%;max-width:760px">
+      <button class="back-link" onclick="goToS('s2')">← Change brief</button>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--text-m);margin-bottom:12px">Your impact stories</div>
+          <div class="impact-card">
+            <div class="impact-lbl">Impact story 1 — required</div>
+            <div class="impact-note">Situation + what you changed + measurable result</div>
+            <textarea class="impact-ta" id="i1" placeholder="Managed operations for a 400-seat BPO. Redesigned floor routing and QA coaching. CSAT improved from 60% to 85% within 6 months."></textarea>
+          </div>
+          <div class="impact-card opt">
+            <div class="impact-lbl opt">Impact story 2 — optional</div>
+            <textarea class="impact-ta" id="i2" placeholder="Add a second story to strengthen your offer..."></textarea>
+          </div>
+          <button class="btn-primary" style="margin-top:4px" onclick="genOffer()">⚡ Generate my offer</button>
+          <div id="e3" class="err" style="display:none"></div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--text-m);margin-bottom:12px">Your offer — builds here</div>
+          <div class="chip pend" id="c-dom"><div class="chip-lbl">Domain</div><div class="chip-val" id="cv-dom">Waiting for your impact stories</div></div>
+          <div class="chip pend" id="c-dif"><div class="chip-lbl">Differentiator</div><div class="chip-val" id="cv-dif">What makes you distinctly valuable</div></div>
+          <div class="chip pend" id="c-cli"><div class="chip-lbl">Ideal client</div><div class="chip-val" id="cv-cli">Who needs you most</div></div>
+          <div class="chip pend" id="c-pri"><div class="chip-lbl">Pricing anchor</div><div class="chip-val" id="cv-pri">Your day rate range</div></div>
+          <div class="refine-row" id="refrow" style="display:none">
+            <div class="refine-lbl">Refine my offer</div>
+            <div class="refine-inner">
+              <textarea id="refinput" rows="2" placeholder="e.g. bring in contact centre experience equally, or make it more travel-specific..."></textarea>
+              <button class="refine-btn" onclick="refineOffer()">↺ Rebuild</button>
+            </div>
+          </div>
+          <button class="btn-gold-full" id="s3-confirm" style="display:none" onclick="goToS('s3b')">View full consulting profile →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ S3B — FULL CONSULTING PROFILE ════ -->
+<div id="s3b" class="scr">
+  <div class="app-nav">
+    <div class="app-logo">Expi<em>vot</em></div>
+    <div class="app-progress">
+      <div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div>
+      <div class="app-step-label">Your profile</div>
+    </div>
+    <div class="app-avatar">TM</div>
+  </div>
+  <div class="scr-body">
+    <div class="scr-card" style="max-width:600px">
+      <button class="back-link" onclick="goToS('s3')">← Edit my offer</button>
+      <div style="font-size:11px;color:var(--text-l);margin-bottom:14px">expivot.in/yourname · your authority profile begins here</div>
+      <div id="s3b-loading" class="loading"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><div class="load-txt">Building your full consulting profile</div></div>
+      <div id="s3b-content"></div>
+      <div id="e4" class="err" style="display:none"></div>
+      <button class="btn-primary" id="s3b-btn" style="display:none" onclick="goToS('s4')">Proceed to readiness dashboard →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ S4 — READINESS DASHBOARD ════ -->
+<div id="s4" class="scr">
+  <div class="app-nav">
+    <div class="app-logo">Expi<em>vot</em></div>
+    <div class="app-progress">
+      <div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div>
+      <div class="app-step-label">Readiness</div>
+    </div>
+    <div class="app-avatar">TM</div>
+  </div>
+  <div class="scr-body">
+    <div class="scr-card">
+      <div class="scr-eyebrow">Readiness dashboard</div>
+      <div class="scr-h">All three dials must be green before go live</div>
+      <div class="scr-sub">Profile is done. Complete financial consent and launch cohort — both run simultaneously.</div>
+      <div class="dial-row">
+        <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Profile</div><div class="dial-status">Complete</div></div>
+        <div class="dial amber" onclick="goToS('s5')"><div class="dial-circle">!</div><div class="dial-lbl">Financial</div><div class="dial-status">Tap to complete</div></div>
+        <div class="dial amber" onclick="goToS('s6')"><div class="dial-circle">!</div><div class="dial-lbl">Cohort</div><div class="dial-status">Tap to join</div></div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between">
+        <div><div style="font-size:13px;font-weight:600;color:var(--text-m)">Shadow profile</div><div style="font-size:11px;color:var(--text-l);margin-top:2px">Visible to matching algorithm · hidden from buyers</div></div>
+        <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:12px;margin-bottom:12px">
+        <div style="font-size:12px;color:var(--text-m)">📅 Public commitment — go live by <strong style="color:var(--teal)">15 August 2026</strong> · visible to your cohort</div>
+      </div>
+      <div style="font-size:13px;color:var(--teal);cursor:pointer;margin-bottom:14px" onclick="goToS('s3')">✏️ Update my offer →</div>
+      <button class="btn-primary" style="opacity:.4;cursor:not-allowed" disabled>🔒 Go live — complete both dials first</button>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+        <button class="btn-sec" onclick="goToS('s5')">Financial consent →</button>
+        <button class="btn-sec" onclick="goToS('s6')">Join cohort →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ S5 — FINANCIAL CONSENT ════ -->
+<div id="s5" class="scr">
+  <div class="app-nav">
+    <div class="app-logo">Expi<em>vot</em></div>
+    <div class="app-progress">
+      <div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div>
+      <div class="app-step-label">Parallel track A</div>
+    </div>
+    <div class="app-avatar">TM</div>
+  </div>
+  <div class="scr-body">
+    <div class="scr-card" style="max-width:480px">
+      <button class="back-link" onclick="goToS('s4')">← Back to dashboard</button>
+      <div class="scr-eyebrow">Financial consent · parallel track A</div>
+      <div class="scr-h">Confirm your financial runway</div>
+      <div class="scr-sub">Not a tracker. Not a gate. Informed consent only — you control your own financial plan.</div>
+      <div class="formula-card">
+        <div class="formula-label">Suggested runway formula</div>
+        <div class="formula-main">(Monthly outgoings × 1.2) × 6</div>
+        <div class="formula-note">This is the recommended minimum buffer before going live as an independent. You decide what makes sense for your situation.</div>
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="fin-check" style="margin-top:2px;accent-color:var(--teal);width:16px;height:16px;flex-shrink:0">
+        <label for="fin-check" class="checkbox-lbl">I understand the suggested runway and consent to proceeding. I acknowledge that financial readiness is my own responsibility.</label>
+      </div>
+      <button class="btn-primary" onclick="goToS('s4-state2')">Confirm consent → Dial 2 turns green</button>
+      <div style="font-size:11px;color:var(--text-l);text-align:center;margin-top:6px">One-way — cannot be undone</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ S4 STATE 2 ════ -->
+<div id="s4-state2" class="scr">
+  <div class="app-nav">
+    <div class="app-logo">Expi<em>vot</em></div>
+    <div class="app-progress">
+      <div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div>
+      <div class="app-step-label">Readiness — 1 done</div>
+    </div>
+    <div class="app-avatar">TM</div>
+  </div>
+  <div class="scr-body">
+    <div class="scr-card">
+      <div class="scr-eyebrow">Readiness dashboard · state 2</div>
+      <div class="scr-h">Financial consent done — one more to go</div>
+      <div class="scr-sub">Join the launch cohort to unlock go live.</div>
+      <div class="dial-row">
+        <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Profile</div><div class="dial-status">Complete</div></div>
+        <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Financial</div><div class="dial-status">Complete</div></div>
+        <div class="dial amber" onclick="goToS('s6')"><div class="dial-circle">!</div><div class="dial-lbl">Cohort</div><div class="dial-status">Tap to join</div></div>
+      </div>
+      <div style="font-size:13px;color:var(--teal);cursor:pointer;margin-bottom:14px" onclick="goToS('s3')">✏️ Update my offer →</div>
+      <button class="btn-primary" style="opacity:.4;cursor:not-allowed" disabled>🔒 Go live — join cohort first</button>
+      <button class="btn-sec" onclick="goToS('s6')">Join launch cohort →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ S6 — JOIN COHORT ════ -->
+<div id="s6" class="scr">
+  <div class="app-nav">
+    <div class="app-logo">Expi<em>vot</em></div>
+    <div class="app-progress">
+      <div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div>
+      <div class="app-step-label">Parallel track B</div>
+    </div>
+    <div class="app-avatar">TM</div>
+  </div>
+  <div class="scr-body">
+    <div class="scr-card" style="max-width:480px">
+      <button class="back-link" onclick="goToS('s4-state2')">← Back to dashboard</button>
+      <div class="scr-eyebrow">Launch cohort · parallel track B</div>
+      <div class="scr-h">Join your launch cohort</div>
+      <div class="scr-sub">4–5 peers at your exact stage. Peer facilitator. 3 structured sessions. Not alone in the transition.</div>
+      <div style="background:var(--card);border:2px solid var(--teal);border-radius:var(--rl);padding:16px;margin-bottom:14px">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin-bottom:6px">Next session</div>
+        <div style="font-family:var(--pjs);font-size:16px;font-weight:700;color:var(--teal-d);margin-bottom:3px">Thursday 17 July · 7:00 PM</div>
+        <div style="font-size:12px;color:var(--text-l)">Online · 90 minutes · peer facilitated</div>
+      </div>
+      <div class="member-row">
+        <div class="member-av" style="background:var(--teal)">SK</div>
+        <div class="member-av" style="background:var(--gold)">PR</div>
+        <div class="member-av" style="background:var(--green)">AM</div>
+        <div class="member-av" style="background:var(--teal-m)">VR</div>
+        <div class="member-note">+ peer facilitator</div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:12px;margin-bottom:12px">
+        <div style="font-size:12px;color:var(--text-m);padding:4px 0;border-bottom:1px solid var(--border)">→ Identity transition and your consulting offer</div>
+        <div style="font-size:12px;color:var(--text-m);padding:4px 0;border-bottom:1px solid var(--border)">→ Pricing and first client approach</div>
+        <div style="font-size:12px;color:var(--text-m);padding:4px 0">→ First project management basics</div>
+      </div>
+      <div style="background:var(--amber-l);border:1px solid var(--amber);border-radius:var(--r);padding:8px 12px;font-size:12px;color:var(--amber);margin-bottom:14px">⏱ 14-day window starts on confirmation</div>
+      <button class="btn-primary" onclick="goToS('s7')">Confirm my place →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ S7 — COHORT COMPLETE ════ -->
+<div id="s7" class="scr">
+  <div class="app-nav">
+    <div class="app-logo">Expi<em>vot</em></div>
+    <div class="app-progress">
+      <div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div>
+      <div class="app-step-label">Session done</div>
+    </div>
+    <div class="app-avatar">TM</div>
+  </div>
+  <div class="scr-body">
+    <div class="scr-card" style="max-width:440px;text-align:center">
+      <div style="width:56px;height:56px;border-radius:50%;background:var(--green-l);border:3px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 14px">✓</div>
+      <div class="scr-eyebrow">Cohort session complete</div>
+      <div class="scr-h">Your peer has confirmed the session</div>
+      <div class="scr-sub">Dial 3 is now green. All three dials are complete — go live is unlocked.</div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:14px;margin-bottom:14px;text-align:left">
+        <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border)">
+          <div class="member-av" style="background:var(--teal);width:30px;height:30px;font-size:11px">SK</div>
+          <div><div style="font-size:12px;font-weight:600;color:var(--text)">Suresh K. confirmed your session</div><div style="font-size:11px;color:var(--text-l)">Peer facilitator · cohort lead</div></div>
+        </div>
+        <div style="padding-top:8px;font-size:12px;color:var(--text-l)">Peer incentives — priority directory placement, higher-tier projects, founding member status — credited when you complete your first project.</div>
+      </div>
+      <button class="btn-primary" onclick="goToS('s4-state3')">All dials green — go to dashboard →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ S4 STATE 3 ════ -->
+<div id="s4-state3" class="scr">
+  <div class="app-nav">
+    <div class="app-logo">Expi<em>vot</em></div>
+    <div class="app-progress">
+      <div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div>
+      <div class="app-step-label">All green</div>
+    </div>
+    <div class="app-avatar">TM</div>
+  </div>
+  <div class="scr-body">
+    <div class="scr-card">
+      <div class="scr-eyebrow">Readiness dashboard · state 3</div>
+      <div class="scr-h">All three dials green — go live is unlocked</div>
+      <div class="dial-row">
+        <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Profile</div><div class="dial-status">Complete</div></div>
+        <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Financial</div><div class="dial-status">Complete</div></div>
+        <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Cohort</div><div class="dial-status">Complete</div></div>
+      </div>
+      <div style="background:var(--green-l);border:1px solid var(--green);border-radius:var(--rl);padding:12px;margin-bottom:14px;text-align:center">
+        <div style="font-size:13px;font-weight:600;color:var(--green)">Go live by 15 August 2026 · your cohort is watching</div>
+      </div>
+      <button class="btn-gold-full" onclick="goToS('s8')">Go live now →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ S8 — MANUAL GO LIVE ════ -->
+<div id="s8" class="scr">
+  <div class="app-nav">
+    <div class="app-logo">Expi<em>vot</em></div>
+    <div class="app-progress">
+      <div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div>
+      <div class="app-step-label">Go live</div>
+    </div>
+    <div class="app-avatar">TM</div>
+  </div>
+  <div class="scr-body">
+    <div class="scr-card" style="max-width:440px;text-align:center">
+      <div style="width:72px;height:72px;border-radius:50%;background:var(--teal-l);border:3px solid var(--teal);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 16px">🚀</div>
+      <div class="scr-eyebrow">This is the moment</div>
+      <div class="scr-h">You are ready to go live on Expivot</div>
+      <div class="scr-sub">Offer packaged. Runway confirmed. Cohort session done. Your first projects are waiting.</div>
+      <div style="display:flex;justify-content:center;gap:18px;margin-bottom:20px">
+        <div style="text-align:center"><div style="width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 4px">✓</div><div style="font-size:11px;color:var(--text-l)">Profile</div></div>
+        <div style="text-align:center"><div style="width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 4px">✓</div><div style="font-size:11px;color:var(--text-l)">Financial</div></div>
+        <div style="text-align:center"><div style="width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 4px">✓</div><div style="font-size:11px;color:var(--text-l)">Cohort</div></div>
+      </div>
+      <div style="background:var(--teal-l);border:1px solid var(--teal);border-radius:var(--r);padding:10px 14px;font-size:12px;color:var(--teal);margin-bottom:18px">🤝 Go live by 15 August 2026 — your cohort is notified</div>
+      <button class="btn-gold-full" style="font-size:16px;padding:14px" onclick="goToS('s9')">Go live on Expivot →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ S9 — PROJECT MATCHING ════ -->
+<div id="s9" class="scr">
+  <div class="app-nav">
+    <div class="app-logo">Expi<em>vot</em></div>
+    <div class="app-progress">
+      <div class="app-pd on" style="flex:1"></div>
+      <div class="app-step-label">Projects matched</div>
+    </div>
+    <div class="app-avatar">TM</div>
+  </div>
+  <div class="scr-body">
+    <div class="scr-card">
+      <div class="scr-eyebrow">Verified project matching</div>
+      <div class="scr-h">3 projects matched to your offer</div>
+      <div class="scr-sub">You were found — you didn't apply. Projects ranked by match score.</div>
+      <div class="proj-card top">
+        <div class="proj-header"><div class="proj-tag">Operations · CX</div><div class="proj-match">94% match</div></div>
+        <div class="proj-title">Audit and redesign walk-in customer journey across a private airline's city ticketing offices</div>
+        <div class="proj-meta">6 weeks · Mumbai · ₹75,000–₹1,00,000</div>
+        <div class="proj-chips"><span class="proj-chip">Walk-in CX</span><span class="proj-chip">Airline operations</span><span class="proj-chip">Service redesign</span></div>
+        <div style="margin-top:12px"><button class="btn-primary" style="width:auto;margin-top:0;padding:8px 18px;font-size:13px" onclick="goToS('s10')">Accept and sign Compact →</button></div>
+      </div>
+      <div class="proj-card" style="opacity:.75">
+        <div class="proj-header"><div class="proj-tag">Workforce</div><div class="proj-match">87% match</div></div>
+        <div class="proj-title">Design workforce management framework for a 200-seat contact centre facing SLA misses</div>
+        <div class="proj-meta">6 weeks · Pune · ₹75,000–₹1,00,000</div>
+        <div class="proj-chips"><span class="proj-chip">Workforce management</span><span class="proj-chip">Contact centre</span></div>
+      </div>
+      <div class="proj-card" style="opacity:.55">
+        <div class="proj-header"><div class="proj-tag">AI Integration</div><div class="proj-match">81% match</div></div>
+        <div class="proj-title">Evaluate and implement AI-assisted quality monitoring for an existing BPO operation</div>
+        <div class="proj-meta">6 weeks · Remote · ₹80,000–₹1,20,000</div>
+        <div class="proj-chips"><span class="proj-chip">AI integration</span><span class="proj-chip">BPO operations</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ S10 — EXPIVOT COMPACT ════ -->
+<div id="s10" class="scr">
+  <div class="app-nav">
+    <div class="app-logo">Expi<em>vot</em></div>
+    <div class="app-progress">
+      <div class="app-pd on" style="flex:1"></div>
+      <div class="app-step-label">Compact</div>
+    </div>
+    <div class="app-avatar">TM</div>
+  </div>
+  <div class="scr-body">
+    <div class="scr-card" style="max-width:500px">
+      <button class="back-link" onclick="goToS('s9')">← Back to projects</button>
+      <div class="scr-eyebrow">Expivot Compact</div>
+      <div class="scr-h">3 clauses · sign before any conversation begins</div>
+      <div class="scr-sub">Escrow funded before first call. Both sides protected from the moment of first contact.</div>
+      <div class="clause"><div class="clause-num">1</div><div><div class="clause-title">No-poach — 12 months</div><div class="clause-desc">The project owner may not hire you directly within 12 months of project completion without Expivot's consent and a referral fee.</div></div></div>
+      <div class="clause"><div class="clause-num">2</div><div><div class="clause-title">Milestone escrow — 50%</div><div class="clause-desc">50% of project fee deposited into Expivot escrow before work begins. Released within 24 hours of milestone approval.</div></div></div>
+      <div class="clause"><div class="clause-num">3</div><div><div class="clause-title">Confidentiality NDA</div><div class="clause-desc">Both parties maintain confidentiality of all project information, business data, and client details shared during the engagement.</div></div></div>
+      <div style="background:var(--teal-l);border:1px solid var(--teal);border-radius:var(--r);padding:10px 14px;font-size:12px;color:var(--teal);margin:12px 0">🔒 Escrow funded before your first conversation — not after</div>
+      <button class="btn-primary" onclick="goToS('s11')">Sign Compact and start project →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ S11 — PROJECT DELIVERED ════ -->
+<div id="s11" class="scr">
+  <div class="app-nav">
+    <div class="app-logo">Expi<em>vot</em></div>
+    <div class="app-progress">
+      <div class="app-pd on" style="flex:1"></div>
+      <div class="app-step-label">First project done</div>
+    </div>
+    <div class="app-avatar">TM</div>
+  </div>
+  <div class="scr-body">
+    <div class="scr-card" style="max-width:520px">
+      <div style="text-align:center;margin-bottom:20px">
+        <div style="font-size:44px;margin-bottom:10px">🎉</div>
+        <div class="scr-eyebrow">Project delivered</div>
+        <div class="scr-h">Your first paid project is complete</div>
+        <div class="scr-sub">Your authority profile begins here. Every project makes it richer.</div>
+      </div>
+      <div class="success-card"><div class="success-lbl">Project</div><div class="success-val">Walk-in customer journey audit and redesign · Airline ticketing offices</div></div>
+      <div class="success-card"><div class="success-lbl">Outcome</div><div class="success-val">Walk-in conversion improved · Service standards documented · Team trained</div></div>
+      <div class="success-card"><div class="success-lbl">Client badge</div><div class="success-val">✓ Client-verified · Walk-in CX · Service redesign · Airline operations</div></div>
+      <div class="success-card"><div class="success-lbl">Earned</div><div class="success-val" style="font-family:var(--pjs);font-size:18px;font-weight:700;color:var(--teal)">₹90,000 · escrow released</div></div>
+      <div style="background:var(--teal-l);border:1px solid var(--teal);border-radius:var(--rl);padding:14px;text-align:center;margin-top:14px">
+        <div style="font-size:13px;font-weight:600;color:var(--teal-d);margin-bottom:8px">expivot.in/tyagi is now live</div>
+        <div style="font-size:12px;color:var(--text-m);margin-bottom:10px">Your success page is public. Share it on LinkedIn — it's the start of your authority profile.</div>
+        <div style="display:flex;gap:8px">
+          <button class="btn-primary" style="margin-top:0;flex:1;font-size:13px">Share on LinkedIn →</button>
+          <button class="btn-sec" style="margin-top:0;flex:1;font-size:13px" onclick="show('land')">Back to home</button>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--text-l)">FC1 complete → FC2 Expivot Grow begins here</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ST={s1:'',cv:'',li:'',brief:null,i1:'',i2:'',refine:'',chips:{}};
+
+function show(id){
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  window.scrollTo(0,0);
+}
+
+function goToS(id){show(id);}
+
+function stab(t,el){
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('on'));
+  document.getElementById('tp-'+t).classList.add('on');
+}
+
+function hcv(){}
+
+function pj(raw){return JSON.parse(raw.replace(/```json|```/g,'').trim());}
+
+async function api(prompt,maxT){
+  const r=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:maxT||800,messages:[{role:'user',content:prompt}]})
+  });
+  const d=await r.json();
+  if(d.error)throw new Error(d.error.message);
+  return d.content[0].text;
+}
+
+async function goS2(){
+  ST.s1=document.getElementById('s1-text').value.trim();
+  const cvPasted=document.getElementById('s1-cv').value.trim();
+  if(!ST.cv&&cvPasted)ST.cv=cvPasted;
+  ST.li=document.getElementById('s1-li').value.trim();
+  const e=document.getElementById('e1');
+  if(!ST.s1&&!ST.cv&&!ST.li){e.textContent='Add your ideal week vision, CV, or LinkedIn summary before continuing.';e.style.display='block';return;}
+  e.style.display='none';
+  show('s2');
+  document.getElementById('s2-loading').style.display='block';
+  document.getElementById('s2-content').style.display='none';
+  /* Truncate CV to avoid overwhelming the prompt and triggering plain-text responses */
+  const cvClean=ST.cv?ST.cv.slice(0,1500):'';
+  const ctx=[
+    ST.s1?'Ideal week vision: '+ST.s1:'',
+    cvClean?'CV summary (key roles and experience): '+cvClean:'',
+    ST.li?'LinkedIn About: '+ST.li.slice(0,800):''
+  ].filter(Boolean).join('\n\n');
+  try{
+    const raw=await api(`IMPORTANT: You must respond with ONLY a valid JSON object. Do not write any explanation, preamble, or text before or after the JSON. Start your response with { and end with }.
+
+You are an expert consulting offer builder for Expivot, helping mid-career professionals in India (35-55 years, 10+ years experience) transition to independent consulting.
+
+Analyse these professional inputs and generate 3 highly relevant buyer-posted project briefs matched to their background.
+
+Professional inputs:
+${ctx}
+
+Respond with ONLY this exact JSON structure — no other text:
+{"match_hint":"One sentence: what functional area and industry was detected from these inputs","briefs":[{"tag":"Operations","title":"Specific outcome-focused project title tailored to this person","meta":"6 weeks · Mumbai · ₹60–90k"},{"tag":"Strategy","title":"Second brief from a different function","meta":"8 weeks · Pune · ₹70–100k"},{"tag":"CX","title":"Third brief from a third function","meta":"6 weeks · Remote · ₹65–85k"}]}
+
+Rules: all 3 must reflect this specific person's background, each from a different function, plain buyer language, outcome-focused titles, India-relevant cities, INR pricing, 4-8 week duration.`,700);
+    let d;
+    try{d=pj(raw);}
+    catch(pe){
+      const match=raw.match(/\{[\s\S]*\}/);
+      if(match)d=JSON.parse(match[0]);
+      else throw new Error('Response was not valid JSON. Try again.');
+    }
+    document.getElementById('s2-hint').innerHTML='💡 '+d.match_hint;
+    const g=document.getElementById('s2-briefs');g.innerHTML='';
+    d.briefs.forEach(b=>{
+      const c=document.createElement('div');c.className='brief-card';
+      c.innerHTML=`<div class="brief-tag">${b.tag}</div><div class="brief-title">${b.title}</div><div class="brief-meta">${b.meta}</div>`;
+      c.onclick=()=>{document.querySelectorAll('.brief-card').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');ST.brief=b;document.getElementById('s2-btn').disabled=false;};
+      g.appendChild(c);
+    });
+    document.getElementById('s2-loading').style.display='none';
+    document.getElementById('s2-content').style.display='block';
+  }catch(err){
+    document.getElementById('s2-loading').style.display='none';
+    document.getElementById('s2-content').style.display='block';
+    const e=document.getElementById('e2');
+    e.textContent='Could not generate briefs — '+err.message+'. Try typing your answer directly in the text field instead of uploading a CV.';
+    e.style.display='block';
+  }
+}
+
+function goS3(){if(!ST.brief)return;show('s3');}
+
+function sc(id,val,st){
+  document.getElementById('c-'+id).className='chip '+st;
+  document.getElementById('cv-'+id).textContent=val;
+}
+
+function resetChips(){
+  sc('dom','Waiting for your impact stories','pend');
+  sc('dif','What makes you distinctly valuable','pend');
+  sc('cli','Who needs you most','pend');
+  sc('pri','Your day rate range','pend');
+  document.getElementById('s3-confirm').style.display='none';
+  document.getElementById('refrow').style.display='none';
+  document.getElementById('e3').style.display='none';
+}
+
+function buildCtx(){
+  return [
+    ST.s1?'Ideal week: '+ST.s1:'',ST.cv?'CV: '+ST.cv:'',ST.li?'LinkedIn: '+ST.li:'',
+    'Selected brief: '+ST.brief.tag+' — '+ST.brief.title+' · '+ST.brief.meta,
+    'Impact story 1: '+ST.i1,ST.i2?'Impact story 2: '+ST.i2:'',
+    ST.refine?'Refinement instruction: '+ST.refine:''
+  ].filter(Boolean).join('\n\n');
+}
+
+async function runChips(){
+  ['dom','dif','cli','pri'].forEach(id=>sc(id,'Building...','bld'));
+  document.getElementById('s3-confirm').style.display='none';
+  document.getElementById('e3').style.display='none';
+  try{
+    const raw=await api(`You are a world-class Independent Consultant Coach with 30+ years of cross-functional, cross-industry business experience and psychologist-level interviewing skill. You help senior professionals in India convert their background into a profitable independent consulting offer.
+
+Synthesise all inputs — functional strengths, industry exposure, seniority, operating level, marketable themes, buyer problems, proof signals. If a refinement instruction is provided, apply it to redirect the offer accordingly while keeping all other inputs in context.
+
+${buildCtx()}
+
+Generate exactly 4 offer chips. Return ONLY valid JSON, no markdown:
+{"domain":"Specific functional area and industry — extract from impact story evidence, not just vision. Be precise not generic.","differentiator":"What makes them distinctly valuable vs a generic consultant — derive from HOW they created value. No phrases like results-oriented, experienced professional, passionate about, proven track record.","ideal_client":"Specific buyer — role, company type, size, and situation. Not businesses but e.g. operations heads at mid-size BPOs facing efficiency pressure.","pricing_anchor":"INR day rate based on seniority. Junior 5-10yrs ₹5k-₹9k/day, mid-senior 10-15yrs ₹8k-₹14k/day, senior 15-25yrs ₹12k-₹20k/day. End with · fixed rate · not a starting point for negotiation"}`,500);
+    const d=pj(raw);ST.chips=d;
+    sc('dom',d.domain,'done');sc('dif',d.differentiator,'done');sc('cli',d.ideal_client,'done');sc('pri',d.pricing_anchor,'done');
+    document.getElementById('s3-confirm').style.display='block';
+    document.getElementById('refrow').style.display='block';
+    document.getElementById('refinput').value='';ST.refine='';
+  }catch(err){
+    ['dom','dif','cli','pri'].forEach(id=>sc(id,'—','pend'));
+    const e=document.getElementById('e3');e.textContent='Could not generate offer: '+err.message+'. Try again.';e.style.display='block';
+  }
+}
+
+async function genOffer(){
+  ST.i1=document.getElementById('i1').value.trim();
+  ST.i2=document.getElementById('i2').value.trim();
+  const e=document.getElementById('e3');
+  if(!ST.i1){e.textContent='Add at least one impact story to generate your offer.';e.style.display='block';return;}
+  await runChips();
+}
+
+async function refineOffer(){
+  ST.refine=document.getElementById('refinput').value.trim();
+  ST.i1=document.getElementById('i1').value.trim();
+  ST.i2=document.getElementById('i2').value.trim();
+  if(!ST.refine){const e=document.getElementById('e3');e.textContent='Type a refinement instruction first.';e.style.display='block';return;}
+  await runChips();
+}
+
+async function goToS(id){
+  if(id==='s3b'){
+    show('s3b');
+    document.getElementById('s3b-loading').style.display='block';
+    document.getElementById('s3b-content').innerHTML='';
+    document.getElementById('s3b-btn').style.display='none';
+    document.getElementById('e4').style.display='none';
+    const ctx=[
+      ST.s1?'Ideal week: '+ST.s1:'',ST.cv?'CV: '+ST.cv:'',ST.li?'LinkedIn: '+ST.li:'',
+      'Selected brief: '+ST.brief.tag+' — '+ST.brief.title,
+      'Impact story 1: '+ST.i1,ST.i2?'Impact story 2: '+ST.i2:'',
+      ST.refine?'Refinement applied: '+ST.refine:'',
+      'Confirmed chips — Domain: '+ST.chips.domain,
+      'Differentiator: '+ST.chips.differentiator,
+      'Ideal client: '+ST.chips.ideal_client,
+      'Pricing: '+ST.chips.pricing_anchor
+    ].filter(Boolean).join('\n');
+    try{
+      const raw=await api(`You are a world-class Independent Consultant Coach. Write a premium consulting profile. Crisp, commercially sharp, no fluff, no generic motivational language. Sound like a top-tier consulting profile not a resume. No phrases like passionate about, results-oriented, proven track record.
+
+Inputs:
+${ctx}
+
+Return ONLY valid JSON, no markdown:
+{"headline":"Sharp 1-line market-facing positioning statement — not a job title","summary":"2-3 sentences — premium, outcome-led, compelling","domain":"1-2 sentences on specific functional domain and credibility","problems_solved":["Buyer problem 1","Buyer problem 2","Buyer problem 3","Buyer problem 4"],"signature_offer":"1 paragraph — what the core engagement is, how it works, what it delivers","ideal_clients":"Specific — role, company type, situation","differentiators":["Specific evidence-backed differentiator 1","Differentiator 2","Differentiator 3"],"impact_proof":["Impact headline 1 with metric","Impact headline 2 with metric"],"engagement_formats":["Format 1","Format 2","Format 3"],"pricing":"Pricing anchor statement","why_hire":"2 sentences — why clients choose this person over alternatives","cta":"Strong closing statement — first person, commercially direct"}`,1200);
+      const p=pj(raw);
+      document.getElementById('s3b-loading').style.display='none';
+      document.getElementById('s3b-content').innerHTML=`
+<div class="profile-hl">${p.headline}</div>
+<div class="profile-summary">${p.summary}</div>
+<div class="profile-sec"><div class="profile-sec-title">Domain</div><div class="profile-sec-body">${p.domain}</div></div>
+<div class="profile-sec"><div class="profile-sec-title">Problems solved</div><div class="profile-sec-body"><ul>${p.problems_solved.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
+<div class="profile-sec"><div class="profile-sec-title">Signature offer</div><div class="profile-sec-body">${p.signature_offer}</div></div>
+<div class="profile-sec"><div class="profile-sec-title">Ideal clients</div><div class="profile-sec-body">${p.ideal_clients}</div></div>
+<div class="profile-sec"><div class="profile-sec-title">Differentiators</div><div class="profile-sec-body"><ul>${p.differentiators.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
+<div class="profile-sec"><div class="profile-sec-title">Proof through impact</div><div class="profile-sec-body"><ul>${p.impact_proof.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
+<div class="profile-sec"><div class="profile-sec-title">Engagement formats</div><div class="profile-sec-body"><ul>${p.engagement_formats.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
+<div class="profile-sec"><div class="profile-sec-title">Pricing anchor</div><div class="profile-sec-body"><div class="price-pill">${p.pricing}</div></div></div>
+<div class="profile-sec"><div class="profile-sec-title">Why clients hire me</div><div class="profile-sec-body">${p.why_hire}</div></div>
+<div class="cta-strip"><p>${p.cta}</p></div>`;
+      document.getElementById('s3b-btn').style.display='block';
+    }catch(err){
+      document.getElementById('s3b-loading').style.display='none';
+      const e=document.getElementById('e4');e.textContent='Could not build profile: '+err.message;e.style.display='block';
+    }
+    return;
+  }
+  show(id);
+}
+</script>
+</body>
+</html>
