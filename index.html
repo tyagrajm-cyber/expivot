@@ -1029,7 +1029,7 @@ function hcv(){}
 function pj(raw){return JSON.parse(raw.replace(/```json|```/g,'').trim());}
 
 async function api(prompt,maxT){
-  const r=await fetch('https://api.anthropic.com/v1/messages',{
+  const r=await fetch('/api/offer',{
     method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:maxT||800,messages:[{role:'user',content:prompt}]})
   });
