@@ -1029,7 +1029,7 @@ function hcv(){}
 function pj(raw){return JSON.parse(raw.replace(/```json|```/g,'').trim());}
 
 async function api(prompt,maxT){
-  const r=await fetch('/api/offer',{
+  const r=await fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:maxT||800,messages:[{role:'user',content:prompt}]})
   });
@@ -1186,7 +1186,7 @@ Inputs:
 ${ctx}
 
 Return ONLY valid JSON, no markdown:
-{"headline":"Sharp 1-line market-facing positioning statement — not a job title","summary":"2-3 sentences — premium, outcome-led, compelling","domain":"1-2 sentences on specific functional domain and credibility","problems_solved":["Buyer problem 1","Buyer problem 2","Buyer problem 3","Buyer problem 4"],"signature_offer":"1 paragraph — what the core engagement is, how it works, what it delivers","ideal_clients":"Specific — role, company type, situation","differentiators":["Specific evidence-backed differentiator 1","Differentiator 2","Differentiator 3"],"impact_proof":["Impact headline 1 with metric","Impact headline 2 with metric"],"engagement_formats":["Format 1","Format 2","Format 3"],"pricing":"Pricing anchor statement","why_hire":"2 sentences — why clients choose this person over alternatives","cta":"Strong closing statement — first person, commercially direct"}`,1200);
+{"headline":"Sharp 1-line market-facing positioning statement — not a job title","summary":"2-3 sentences — premium, outcome-led, compelling","domain":"1-2 sentences on specific functional domain and credibility","problems_solved":["Buyer problem 1","Buyer problem 2","Buyer problem 3","Buyer problem 4"],"signature_offer":"1 paragraph — what the core engagement is, how it works, what it delivers. Keep to 3 sentences maximum.","ideal_clients":"Specific — role, company type, situation. 2 sentences maximum.","differentiators":["Specific evidence-backed differentiator 1","Differentiator 2","Differentiator 3"],"impact_proof":["Impact headline 1 with metric","Impact headline 2 with metric"],"engagement_formats":["Format 1","Format 2","Format 3"],"pricing":"Pricing anchor statement — one line only","why_hire":"2 sentences maximum — why clients choose this person over alternatives","cta":"Strong closing statement — first person, commercially direct. 2 sentences maximum."}`,2000);
       const p=pj(raw);
       document.getElementById('s3b-loading').style.display='none';
       document.getElementById('s3b-content').innerHTML=`
