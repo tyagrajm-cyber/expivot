@@ -530,7 +530,7 @@ textarea{resize:none}
       <div class="dial-row">
         <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Profile</div><div class="dial-status">Complete</div></div>
         <div class="dial amber" onclick="goToS('s5')"><div class="dial-circle">!</div><div class="dial-lbl">Financial</div><div class="dial-status">Tap to complete</div></div>
-        <div class="dial amber" onclick="goToS('s6')"><div class="dial-circle">!</div><div class="dial-lbl">Cohort</div><div class="dial-status">Tap to join</div></div>
+        <div class="dial amber" onclick="ST.cohortFirst=true;goToS('s6')"><div class="dial-circle">!</div><div class="dial-lbl">Cohort</div><div class="dial-status">Tap to join</div></div>
       </div>
       <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between">
         <div><div style="font-size:13px;font-weight:600;color:var(--text-m)">Shadow profile</div><div style="font-size:11px;color:var(--text-l);margin-top:2px">Visible to matching algorithm · hidden from buyers</div></div>
@@ -543,7 +543,7 @@ textarea{resize:none}
       <button class="btn-primary" style="opacity:.4;cursor:not-allowed" disabled>🔒 Go live — complete both dials first</button>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
         <button class="btn-sec" onclick="goToS('s5')">Financial consent →</button>
-        <button class="btn-sec" onclick="goToS('s6')">Join cohort →</button>
+        <button class="btn-sec" onclick="ST.cohortFirst=true;goToS('s6')">Join cohort →</button>
       </div>
     </div>
   </div>
@@ -1254,8 +1254,8 @@ Return the complete updated profile as ONLY valid JSON — same structure, with 
 }
 
 function handleS7Next(){
-  if(ST.cohortFirst){goToS('s4-state3');}
-  else{goToS('s4-state2b');}
+  if(ST.cohortFirst){goToS('s4-state2b');}
+  else{goToS('s4-state3');}
 }
 
 function goToS(id){
