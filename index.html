@@ -1252,30 +1252,19 @@ function handleS7Next(){
   else{goToS('s4-state2b');}
 }
 
-const _origGoToS=window.goToS;
-window.goToS=function(id){
+function goToS(id){
   if(id==='s3b'){loadS3B();return;}
-  if(id==='s6'){
-    const fromS4=document.getElementById('s4').classList.contains('on');
-    const fromS4b=document.getElementById('s4-state2b')&&document.getElementById('s4-state2b').classList.contains('on');
-    if(fromS4){ST.cohortFirst=false;document.getElementById('s6-back').setAttribute('onclick',"goToS('s4')");}
-    else{ST.cohortFirst=false;}
-    show('s6');return;
-  }
-  if(id==='s6-from-s4'){
-    ST.cohortFirst=true;
-    document.getElementById('s6-back').setAttribute('onclick',"goToS('s4')");
+  if(id==='s6'||id==='s6-from-s4'){
+    if(id==='s6-from-s4')ST.cohortFirst=true;
+    else ST.cohortFirst=document.getElementById('s4').classList.contains('on')&&!document.getElementById('s4-state2').classList.contains('on');
     show('s6');return;
   }
   show(id);
-};
+}
 
 document.querySelectorAll('.dial.amber').forEach(d=>{
   if(d.querySelector('.dial-lbl')&&d.querySelector('.dial-lbl').textContent==='Cohort'){
-    d.onclick=function(){
-      ST.cohortFirst=!document.getElementById('s4-state2b').classList.contains('on');
-      show('s6');
-    };
+    d.onclick=function(){ST.cohortFirst=true;show('s6');};
   }
 });
 </script>
