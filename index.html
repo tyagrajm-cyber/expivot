@@ -1029,7 +1029,7 @@ function hcv(){}
 function pj(raw){return JSON.parse(raw.replace(/```json|```/g,'').trim());}
 
 async function api(prompt,maxT){
- const r=await fetch('/api/offer',{
+  const r=await fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:maxT||800,messages:[{role:'user',content:prompt}]})
   });
@@ -1133,8 +1133,8 @@ Synthesise all inputs — functional strengths, industry exposure, seniority, op
 
 ${buildCtx()}
 
-Generate exactly 4 offer chips. Return ONLY valid JSON, no markdown:
-{"domain":"Specific functional area and industry — extract from impact story evidence, not just vision. Be precise not generic.","differentiator":"What makes them distinctly valuable vs a generic consultant — derive from HOW they created value. No phrases like results-oriented, experienced professional, passionate about, proven track record.","ideal_client":"Specific buyer — role, company type, size, and situation. Not businesses but e.g. operations heads at mid-size BPOs facing efficiency pressure.","pricing_anchor":"INR day rate based on seniority. Junior 5-10yrs ₹5k-₹9k/day, mid-senior 10-15yrs ₹8k-₹14k/day, senior 15-25yrs ₹12k-₹20k/day. End with · fixed rate · not a starting point for negotiation"}`,500);
+Generate exactly 4 offer chips. Keep each value concise — maximum 2 sentences per chip. Return ONLY valid JSON, no markdown:
+{"domain":"Specific functional area and industry — extract from impact story evidence, not just vision. Be precise not generic.","differentiator":"What makes them distinctly valuable vs a generic consultant — derive from HOW they created value. No phrases like results-oriented, experienced professional, passionate about, proven track record.","ideal_client":"Specific buyer — role, company type, size, and situation. Not businesses but e.g. operations heads at mid-size BPOs facing efficiency pressure.","pricing_anchor":"INR day rate based on seniority. Junior 5-10yrs ₹5k-₹9k/day, mid-senior 10-15yrs ₹8k-₹14k/day, senior 15-25yrs ₹12k-₹20k/day. End with · fixed rate · not a starting point for negotiation"}`,800);
     const d=pj(raw);ST.chips=d;
     sc('dom',d.domain,'done');sc('dif',d.differentiator,'done');sc('cli',d.ideal_client,'done');sc('pri',d.pricing_anchor,'done');
     document.getElementById('s3-confirm').style.display='block';
