@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Expivot — From Employment to Expertise</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -926,8 +924,7 @@ textarea{resize:none}
     </div>
   </div>
 </div>
-pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
+<script>
 const ST={s1:'',cv:'',li:'',brief:null,i1:'',i2:'',refine:'',chips:{},profile:null,cohortFirst:false};
 
 function resetAndHome(){
@@ -962,9 +959,18 @@ function stab(t,el){
 async function handlePDF(inp){
   const f=inp.files[0];if(!f)return;
   const done=document.getElementById('cv-done');
-  done.textContent='Reading '+f.name+'...';done.style.display='block';
+  done.textContent='Reading '+f.name+'...';done.style.display='block';done.style.color='';
   try{
     if(f.type==='application/pdf'||f.name.endsWith('.pdf')){
+      // Load PDF.js dynamically only when needed
+      if(typeof pdfjsLib==='undefined'){
+        await new Promise((res,rej)=>{
+          const s=document.createElement('script');
+          s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+          s.onload=res;s.onerror=rej;document.head.appendChild(s);
+        });
+        pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      }
       const ab=await f.arrayBuffer();
       const pdf=await pdfjsLib.getDocument({data:ab}).promise;
       let txt='';
@@ -981,7 +987,9 @@ async function handlePDF(inp){
       r.readAsText(f);
     }
   }catch(e){
-    ST.cv='';done.textContent='Could not read file — paste CV text below instead';done.style.color='var(--red)';
+    ST.cv='';
+    done.textContent='Could not read file — paste CV text below instead';
+    done.style.color='var(--red)';
   }
 }
 
