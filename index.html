@@ -397,20 +397,23 @@ textarea{resize:none}
       </div>
       <div id="tp-cv" class="tab-panel">
         <div class="field-note">Upload your CV — PDF preferred. Or paste text below. At least one of CV or LinkedIn is required.</div>
-        <div class="upload-zone" onclick="document.getElementById('cvf').click()">
+        <div class="upload-zone" id="cv-upload-zone" onclick="document.getElementById('cvf').click()">
           <div style="font-size:22px;margin-bottom:5px">📄</div>
           <div class="upload-note">Click to upload CV — PDF or TXT</div>
           <div class="upload-done" id="cv-done"></div>
           <input type="file" id="cvf" accept=".pdf,.txt" style="display:none" onchange="handlePDF(this)">
         </div>
+        <div id="cv-delete-row" style="display:none;margin-top:6px;text-align:right">
+          <button onclick="clearCV()" style="font-size:11px;color:var(--red);background:none;border:none;cursor:pointer;font-family:var(--inter)">✕ Remove and re-upload</button>
+        </div>
         <div style="margin-top:10px">
           <div class="field-note">Or paste CV text directly</div>
-          <textarea id="s1-cv" rows="4" placeholder="Paste your CV or resume text here..."></textarea>
+          <textarea id="s1-cv" rows="4" placeholder="Paste your CV or resume text here..." oninput="clearE1()"></textarea>
         </div>
       </div>
       <div id="tp-li" class="tab-panel">
         <div class="field-note">Paste your LinkedIn About section. At least one of CV or LinkedIn is required.</div>
-        <textarea id="s1-li" rows="6" placeholder="Paste your LinkedIn About section, headline, and summary here — the more detail, the better the brief matching..."></textarea>
+        <textarea id="s1-li" rows="6" placeholder="Paste your LinkedIn About section, headline, and summary here — the more detail, the better the brief matching..." oninput="clearE1()"></textarea>
       </div>
       <div id="e1" class="err" style="display:none"></div>
       <button class="btn-primary" onclick="goS2()">Continue →</button>
@@ -571,7 +574,8 @@ textarea{resize:none}
         <input type="checkbox" id="fin-check" style="margin-top:2px;accent-color:var(--teal);width:16px;height:16px;flex-shrink:0">
         <label for="fin-check" class="checkbox-lbl">I understand the suggested runway and consent to proceeding. I acknowledge that financial readiness is my own responsibility.</label>
       </div>
-      <button class="btn-primary" onclick="goToS('s4-state2')">Confirm consent → Dial 2 turns green</button>
+      <button class="btn-primary" onclick="checkFinConsent('fin-check','e-fin','s4-state2')">Confirm consent → Dial 2 turns green</button>
+      <div id="e-fin" class="err" style="display:none">Please check the box to confirm your consent before proceeding.</div>
       <div style="font-size:11px;color:var(--text-l);text-align:center;margin-top:6px">One-way — cannot be undone</div>
     </div>
   </div>
@@ -647,7 +651,8 @@ textarea{resize:none}
         <input type="checkbox" id="fin-check-2" style="margin-top:2px;accent-color:var(--teal);width:16px;height:16px;flex-shrink:0">
         <label for="fin-check-2" class="checkbox-lbl">I understand the suggested runway and consent to proceeding.</label>
       </div>
-      <button class="btn-primary" onclick="goToS('s4-state3')">Confirm consent → All dials green</button>
+      <button class="btn-primary" onclick="checkFinConsent('fin-check-2','e-fin-2','s4-state3')">Confirm consent → All dials green</button>
+      <div id="e-fin-2" class="err" style="display:none">Please check the box to confirm your consent before proceeding.</div>
     </div>
   </div>
 </div>
@@ -927,11 +932,33 @@ textarea{resize:none}
 <script>
 const ST={s1:'',cv:'',li:'',brief:null,i1:'',i2:'',refine:'',chips:{},profile:null,cohortFirst:false};
 
+function checkFinConsent(checkId,errId,dest){
+  const cb=document.getElementById(checkId);
+  const e=document.getElementById(errId);
+  if(!cb.checked){e.style.display='block';cb.addEventListener('change',function(){if(this.checked)e.style.display='none';},{once:true});return;}
+  e.style.display='none';
+  goToS(dest);
+}
+
+function clearE1(){
+  const e=document.getElementById('e1');
+  if(e)e.style.display='none';
+}
+
+function clearCV(){
+  ST.cv='';
+  const cvf=document.getElementById('cvf');if(cvf)cvf.value='';
+  const done=document.getElementById('cv-done');if(done){done.textContent='';done.style.display='none';}
+  const delRow=document.getElementById('cv-delete-row');if(delRow)delRow.style.display='none';
+  const zone=document.getElementById('cv-upload-zone');if(zone)zone.style.display='block';
+}
+
 function resetAndHome(){
   Object.assign(ST,{s1:'',cv:'',li:'',brief:null,i1:'',i2:'',refine:'',chips:{},profile:null,cohortFirst:false});
   ['s1-text','s1-cv','s1-li','i1','i2','refinput','s3b-refinput'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   const cd=document.getElementById('cv-done');if(cd){cd.textContent='';cd.style.display='none';}
   const cvf=document.getElementById('cvf');if(cvf)cvf.value='';
+  const delRow=document.getElementById('cv-delete-row');if(delRow)delRow.style.display='none';
   document.getElementById('s2-btn').disabled=true;
   document.getElementById('s2-briefs').innerHTML='';
   document.getElementById('s2-content').style.display='none';
@@ -981,9 +1008,11 @@ async function handlePDF(inp){
       }
       ST.cv=txt.slice(0,2000);
       done.textContent='✓ '+f.name+' — text extracted';
+      document.getElementById('cv-delete-row').style.display='block';
+      clearE1();
     } else {
       const r=new FileReader();
-      r.onload=e=>{ST.cv=e.target.result.slice(0,2000);done.textContent='✓ '+f.name+' uploaded';};
+      r.onload=e=>{ST.cv=e.target.result.slice(0,2000);done.textContent='✓ '+f.name+' uploaded';document.getElementById('cv-delete-row').style.display='block';clearE1();};
       r.readAsText(f);
     }
   }catch(e){
@@ -1195,7 +1224,7 @@ Inputs:
 ${ctx}
 
 Return ONLY valid JSON. Keep each field concise — 2-3 sentences maximum per field:
-{"headline":"Sharp 1-line market-facing positioning statement","summary":"2-3 sentences — premium, outcome-led","domain":"1-2 sentences on specific functional domain","problems_solved":["Problem 1","Problem 2","Problem 3","Problem 4"],"signature_offer":"2-3 sentences on core engagement, how it works, what it delivers","ideal_clients":"2 sentences — specific role, company type, situation","differentiators":["Differentiator 1","Differentiator 2","Differentiator 3"],"impact_proof":["Impact 1 with metric","Impact 2 with metric"],"engagement_formats":["Format 1","Format 2","Format 3"],"pricing":"One line pricing statement","why_hire":"2 sentences — why clients choose this person","cta":"2 sentences — first person, commercially direct"}`,2000);
+{"headline":"Sharp 1-line market-facing positioning statement","summary":"2-3 sentences — premium, outcome-led","domain":"1-2 sentences on specific functional domain","problems_solved":["Problem 1","Problem 2","Problem 3","Problem 4"],"signature_offer":"2-3 sentences on core engagement, how it works, what it delivers","ideal_clients":"2 sentences — specific role, company type, situation","differentiators":["Differentiator 1","Differentiator 2","Differentiator 3"],"impact_proof":["Impact 1 with metric","Impact 2 with metric"],"engagement_formats":["Format 1","Format 2","Format 3"],"pricing":"One line pricing statement","why_hire":"2 sentences — why clients choose this person","cta":"2 sentences — first person, commercially direct. Do NOT include any personal contact details, email addresses, phone numbers, or off-platform contact methods. Instead invite the buyer to connect via the Expivot platform or send a message to schedule a call."}`,2000);
     const p=pj(raw);
     document.getElementById('s3b-loading').style.display='none';
     document.getElementById('s3b-content').innerHTML=renderProfile(p);
