@@ -600,7 +600,7 @@ textarea{resize:none}
       </div>
       <div style="font-size:13px;color:var(--teal);cursor:pointer;margin-bottom:14px" onclick="goToS('s3')">✏️ Update my offer →</div>
       <button class="btn-primary" style="opacity:.4;cursor:not-allowed" disabled>🔒 Go live — join cohort first</button>
-      <button class="btn-sec" onclick="goToS('s6')">Join launch cohort →</button>
+      <button class="btn-sec" onclick="ST.cohortFirst=false;goToS('s6')">Join launch cohort →</button>
     </div>
   </div>
 </div>
@@ -1291,17 +1291,12 @@ function goToS(id){
   if(id==='s3b'){loadS3B();return;}
   if(id==='s6'||id==='s6-from-s4'){
     if(id==='s6-from-s4')ST.cohortFirst=true;
-    else ST.cohortFirst=document.getElementById('s4').classList.contains('on')&&!document.getElementById('s4-state2').classList.contains('on');
     show('s6');return;
   }
   show(id);
 }
 
-document.querySelectorAll('.dial.amber').forEach(d=>{
-  if(d.querySelector('.dial-lbl')&&d.querySelector('.dial-lbl').textContent==='Cohort'){
-    d.onclick=function(){ST.cohortFirst=true;show('s6');};
-  }
-});
+
 </script>
 </body>
 </html>
