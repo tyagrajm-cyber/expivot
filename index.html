@@ -207,9 +207,12 @@ textarea{resize:none}
 .sec-edit-save{font-size:11px;color:#fff;background:var(--teal);border:none;border-radius:var(--r);padding:4px 10px;cursor:pointer;font-family:var(--inter);margin-top:4px}
 
 /* PROJECTS */
-.proj-card{border:1.5px solid var(--border);border-radius:var(--rl);padding:16px;background:#fff;margin-bottom:10px;cursor:pointer;transition:border-color .12s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.proj-card{border:1.5px solid var(--border);border-radius:var(--rl);padding:16px;background:#fff;margin-bottom:10px;cursor:pointer;transition:all .15s}
 .proj-card:hover{border-color:var(--teal)}
 .proj-card.top{border-color:var(--teal);border-width:2px}
+.proj-card.selected{border-color:var(--teal);border-width:2px;background:var(--teal-l)}
+.proj-card.dimmed{opacity:.4;pointer-events:none}
 .proj-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px}
 .proj-tag{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--teal);background:var(--teal-l);border-radius:4px;padding:2px 7px}
 .proj-match{font-size:12px;font-weight:700;color:var(--green)}
@@ -778,25 +781,11 @@ textarea{resize:none}
       <div class="scr-eyebrow">Verified project matching</div>
       <div class="scr-h">3 projects matched to your offer</div>
       <div class="scr-sub">You were found — you didn't apply. Projects ranked by match score.</div>
-      <div class="proj-card top">
-        <div class="proj-header"><div class="proj-tag">Operations · CX</div><div class="proj-match">94% match</div></div>
-        <div class="proj-title">Audit and redesign walk-in customer journey across a private airline's city ticketing offices</div>
-        <div class="proj-meta">6 weeks · Mumbai · ₹75,000–₹1,00,000</div>
-        <div class="proj-chips"><span class="proj-chip">Walk-in CX</span><span class="proj-chip">Airline operations</span><span class="proj-chip">Service redesign</span></div>
-        <div style="margin-top:12px"><button class="btn-primary" style="width:auto;margin-top:0;padding:8px 18px;font-size:13px" onclick="goToS('s10')">Accept and sign Compact →</button></div>
+      <div id="s9-loading" style="text-align:center;padding:32px 0;display:none">
+        <div style="font-size:13px;color:var(--text-l);margin-bottom:8px">Finding your matches...</div>
+        <div style="width:36px;height:36px;border:3px solid var(--teal-l);border-top-color:var(--teal);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto"></div>
       </div>
-      <div class="proj-card" style="opacity:.75">
-        <div class="proj-header"><div class="proj-tag">Workforce</div><div class="proj-match">87% match</div></div>
-        <div class="proj-title">Design workforce management framework for a 200-seat contact centre facing SLA misses</div>
-        <div class="proj-meta">6 weeks · Pune · ₹75,000–₹1,00,000</div>
-        <div class="proj-chips"><span class="proj-chip">Workforce management</span><span class="proj-chip">Contact centre</span></div>
-      </div>
-      <div class="proj-card" style="opacity:.55">
-        <div class="proj-header"><div class="proj-tag">AI Integration</div><div class="proj-match">81% match</div></div>
-        <div class="proj-title">Evaluate and implement AI-assisted quality monitoring for an existing BPO operation</div>
-        <div class="proj-meta">6 weeks · Remote · ₹80,000–₹1,20,000</div>
-        <div class="proj-chips"><span class="proj-chip">AI integration</span><span class="proj-chip">BPO operations</span></div>
-      </div>
+      <div id="s9-projects"></div>
     </div>
   </div>
 </div>
@@ -930,7 +919,7 @@ textarea{resize:none}
   </div>
 </div>
 <script>
-const ST={s1:'',cv:'',li:'',brief:null,i1:'',i2:'',refine:'',chips:{},profile:null,cohortFirst:false};
+const ST={s1:'',cv:'',li:'',brief:null,i1:'',i2:'',refine:'',chips:{},profile:null,cohortFirst:false,selectedProject:null,s9projects:[]};
 
 function checkFinConsent(checkId,errId,dest){
   const cb=document.getElementById(checkId);
@@ -954,7 +943,7 @@ function clearCV(){
 }
 
 function resetAndHome(){
-  Object.assign(ST,{s1:'',cv:'',li:'',brief:null,i1:'',i2:'',refine:'',chips:{},profile:null,cohortFirst:false});
+  Object.assign(ST,{s1:'',cv:'',li:'',brief:null,i1:'',i2:'',refine:'',chips:{},profile:null,cohortFirst:false,selectedProject:null,s9projects:[]});
   ['s1-text','s1-cv','s1-li','i1','i2','refinput','s3b-refinput'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   const cd=document.getElementById('cv-done');if(cd){cd.textContent='';cd.style.display='none';}
   const cvf=document.getElementById('cvf');if(cvf)cvf.value='';
@@ -1293,7 +1282,83 @@ function goToS(id){
     if(id==='s6-from-s4')ST.cohortFirst=true;
     show('s6');return;
   }
+  if(id==='s9'){loadS9Projects();return;}
   show(id);
+}
+
+async function loadS9Projects(){
+  show('s9');
+  const loading=document.getElementById('s9-loading');
+  const container=document.getElementById('s9-projects');
+  container.innerHTML='';
+  loading.style.display='block';
+  const chips=ST.chips||{};
+  const brief=ST.brief||{};
+  const prompt=`You are generating 3 verified consulting project briefs for an Expivot platform user.
+
+The user's consulting offer:
+- Domain: ${chips.domain||'Not specified'}
+- Differentiator: ${chips.differentiator||'Not specified'}
+- Ideal client: ${chips.ideal_client||'Not specified'}
+- Pricing anchor: ${chips.pricing_anchor||'Not specified'}
+- Selected brief: ${brief.tag||''} — ${brief.title||''}
+
+Generate exactly 3 project briefs that genuinely match this person's domain and differentiator. Each project must be a real, specific consulting engagement — not generic. Use Indian cities and INR pricing relevant to the pricing anchor.
+
+Respond ONLY with a JSON array of 3 objects. No preamble, no markdown, no backticks. Each object must have:
+- tag: short domain label (e.g. "Operations · CX")
+- match: match percentage as string (e.g. "94%")
+- title: specific project title (1-2 sentences)
+- duration: e.g. "6 weeks"
+- location: Indian city or "Remote"
+- fee: INR range as string (e.g. "₹75,000–₹1,00,000")
+- chips: array of 2-3 skill tags
+
+Order by match percentage descending. First project highest match.`;
+
+  try{
+    const res=await fetch('/api/offer',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,messages:[{role:'user',content:prompt}]})
+    });
+    const data=await res.json();
+    const raw=data.content.map(i=>i.text||'').join('');
+    const clean=raw.replace(/```json|```/g,'').trim();
+    const projects=JSON.parse(clean);
+    loading.style.display='none';
+    ST.selectedProject=null;
+    container.innerHTML='';
+    projects.forEach((p,i)=>{
+      const card=document.createElement('div');
+      card.className='proj-card'+(i===0?' top':'');
+      card.innerHTML=`
+        <div class="proj-header"><div class="proj-tag">${p.tag}</div><div class="proj-match">${p.match} match</div></div>
+        <div class="proj-title">${p.title}</div>
+        <div class="proj-meta">${p.duration} · ${p.location} · ${p.fee}</div>
+        <div class="proj-chips">${(p.chips||[]).map(c=>`<span class="proj-chip">${c}</span>`).join('')}</div>
+        <div class="proj-accept" style="display:none;margin-top:12px">
+          <button class="btn-primary" style="width:auto;margin-top:0;padding:8px 18px;font-size:13px" onclick="ST.selectedProject=ST.s9projects[${i}];goToS('s10')">Accept and sign Compact →</button>
+        </div>`;
+      card.addEventListener('click',function(e){
+        if(e.target.tagName==='BUTTON')return;
+        document.querySelectorAll('#s9-projects .proj-card').forEach((c,ci)=>{
+          c.classList.remove('selected','top','dimmed');
+          c.querySelector('.proj-accept').style.display='none';
+          if(ci!==i)c.classList.add('dimmed');
+        });
+        card.classList.add('selected');
+        card.classList.remove('dimmed');
+        card.querySelector('.proj-accept').style.display='block';
+        ST.selectedProject=ST.s9projects[i];
+      });
+      container.appendChild(card);
+    });
+    ST.s9projects=projects;
+  }catch(err){
+    loading.style.display='none';
+    container.innerHTML='<div style="color:var(--text-l);font-size:13px;text-align:center;padding:20px">Could not load matched projects. Please try again.</div>';
+  }
 }
 
 
