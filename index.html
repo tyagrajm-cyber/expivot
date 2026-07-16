@@ -212,7 +212,7 @@ textarea{resize:none}
 .proj-card:hover{border-color:var(--teal)}
 .proj-card.top{border-color:var(--teal);border-width:2px}
 .proj-card.selected{border-color:var(--teal);border-width:2px;background:var(--teal-l)}
-.proj-card.dimmed{opacity:.4;pointer-events:none}
+.proj-card.dimmed{opacity:.4}
 .proj-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px}
 .proj-tag{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--teal);background:var(--teal-l);border-radius:4px;padding:2px 7px}
 .proj-match{font-size:12px;font-weight:700;color:var(--green)}
@@ -807,7 +807,7 @@ textarea{resize:none}
       <div class="clause"><div class="clause-num">2</div><div><div class="clause-title">Milestone escrow — 50%</div><div class="clause-desc">50% of project fee deposited into Expivot escrow before work begins. Released within 24 hours of milestone approval.</div></div></div>
       <div class="clause"><div class="clause-num">3</div><div><div class="clause-title">Confidentiality NDA</div><div class="clause-desc">Both parties maintain confidentiality of all project information, business data, and client details shared during the engagement.</div></div></div>
       <div style="background:var(--teal-l);border:1px solid var(--teal);border-radius:var(--r);padding:10px 14px;font-size:12px;color:var(--teal);margin:12px 0">🔒 Escrow funded before your first conversation — not after</div>
-      <button class="btn-primary" onclick="goToS('s11')">Sign Compact and start project →</button>
+      <button class="btn-primary" onclick="loadS11();goToS('s11')">Sign Compact and start project →</button>
     </div>
   </div>
 </div>
@@ -827,10 +827,10 @@ textarea{resize:none}
         <div class="scr-h">Your first paid project is complete</div>
         <div class="scr-sub">Your authority profile begins here. Every project makes it richer.</div>
       </div>
-      <div class="success-card"><div class="success-lbl">Project</div><div class="success-val">Walk-in customer journey audit and redesign · Airline ticketing offices</div></div>
-      <div class="success-card"><div class="success-lbl">Outcome</div><div class="success-val">Walk-in conversion improved · Service standards documented · Team trained</div></div>
-      <div class="success-card"><div class="success-lbl">Client badge</div><div class="success-val">✓ Client-verified · Walk-in CX · Service redesign · Airline operations</div></div>
-      <div class="success-card"><div class="success-lbl">Earned</div><div class="success-val" style="font-family:var(--pjs);font-size:18px;font-weight:700;color:var(--teal)">₹90,000 · escrow released</div></div>
+      <div class="success-card"><div class="success-lbl">Project</div><div class="success-val" id="s11-title"></div></div>
+      <div class="success-card"><div class="success-lbl">Outcome</div><div class="success-val" id="s11-outcome"></div></div>
+      <div class="success-card"><div class="success-lbl">Client badge</div><div class="success-val" id="s11-badge"></div></div>
+      <div class="success-card"><div class="success-lbl">Earned</div><div class="success-val" id="s11-earned" style="font-family:var(--pjs);font-size:18px;font-weight:700;color:var(--teal)"></div></div>
       <div style="background:var(--teal-l);border:1px solid var(--teal);border-radius:var(--rl);padding:14px;text-align:center;margin-top:14px">
         <div style="font-size:13px;font-weight:600;color:var(--teal-d);margin-bottom:8px">expivot.in/yourname is now live</div>
         <div style="font-size:12px;color:var(--text-m);margin-bottom:10px">Your success page is public. Share it on LinkedIn — it's the start of your authority profile.</div>
@@ -1269,6 +1269,15 @@ Return the complete updated profile as ONLY valid JSON — same structure, with 
     document.getElementById('s3b-refrow').style.display='block';
     document.getElementById('s3b-btn').style.display='block';
   }
+}
+
+function loadS11(){
+  const p=ST.selectedProject;
+  if(!p)return;
+  document.getElementById('s11-title').textContent=p.title;
+  document.getElementById('s11-outcome').textContent=(p.chips||[]).join(' · ');
+  document.getElementById('s11-badge').textContent='✓ Client-verified · '+(p.chips||[]).join(' · ');
+  document.getElementById('s11-earned').textContent=p.fee+' · escrow released';
 }
 
 function handleS7Next(){
