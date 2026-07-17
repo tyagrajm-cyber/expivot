@@ -20,6 +20,33 @@
 }
 html,body{height:100%;overflow:hidden}
 body{font-family:var(--inter);color:var(--text);background:var(--teal-d)}
+.eng-bar{display:flex;padding:0 20px;gap:0;border-bottom:1px solid rgba(255,255,255,.1);background:var(--teal-d);flex-shrink:0;position:relative;z-index:50;}
+.eng-e{flex:1;padding:8px 4px 0;cursor:default;position:relative;text-align:center;}
+.eng-name{font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px;transition:color .15s;display:flex;align-items:center;justify-content:center;gap:4px;}
+.eng-name.on{color:rgba(255,255,255,.9);}
+.eng-name.off{color:rgba(255,255,255,.3);}
+.eng-i{display:inline-flex;align-items:center;justify-content:center;width:11px;height:11px;border-radius:50%;border:1px solid currentColor;font-size:7px;font-style:normal;font-weight:700;opacity:.7;cursor:help;flex-shrink:0;}
+.eng-track{height:2px;border-radius:2px;}
+.eng-track.on{background:var(--gold);}
+.eng-track.off{border-top:1.5px dashed rgba(255,255,255,.15);height:0;}
+.eng-tt{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--border);border-radius:8px;padding:0;width:210px;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,.12);cursor:default;overflow:visible;}
+.eng-tt::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:6px solid var(--teal);z-index:201;}
+.eng-e:hover .eng-tt{display:block;}
+.eng-e:first-child .eng-tt{left:0;transform:none;}
+.eng-e:first-child .eng-tt::before{left:16px;transform:none;}
+.eng-e:last-child .eng-tt{left:auto;right:0;transform:none;}
+.eng-e:last-child .eng-tt::before{left:auto;right:16px;transform:none;}
+.eng-tt-top{background:var(--teal);padding:10px 12px;border-radius:8px 8px 0 0;overflow:hidden;}
+.eng-tt-full{font-family:var(--pjs);font-size:11px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:2px;}
+.eng-tt-sub{font-size:10px;color:rgba(255,255,255,.6);letter-spacing:.04em;}
+.eng-tt-body{padding:10px 12px;}
+.eng-feat{display:flex;align-items:flex-start;gap:7px;padding:4px 0;border-bottom:1px dotted var(--border);font-size:11px;cursor:default;user-select:none;}
+.eng-feat:last-child{border-bottom:none;}
+.eng-mark{font-weight:700;flex-shrink:0;margin-top:1px;font-size:11px;cursor:default;}
+.eng-mark.p1{color:var(--teal);}
+.eng-mark.p2{color:#bbb;}
+.eng-feat-text{color:var(--ink-m);line-height:1.4;cursor:default;}
+.eng-feat-text.p2{color:#bbb;font-style:italic;}
 .scr{display:none;height:100vh;flex-direction:column}
 .scr.on{display:flex}
 
@@ -180,6 +207,7 @@ textarea{resize:none}
 /* DIALS */
 .dial-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
 .dial{border-radius:var(--rxl);padding:16px;text-align:center;border:2px solid var(--border);background:#fff;cursor:pointer;transition:all .15s}
+.dial.green{cursor:default;}
 .dial:hover{border-color:var(--teal)}
 .dial.green{border-color:var(--green);background:var(--green-l)}
 .dial.amber{border-color:var(--amber);background:var(--amber-l)}
@@ -958,9 +986,74 @@ function resetAndHome(){
   show('land');
 }
 
+const ENGINE_MAP={
+  's1':['on','off','off','off','off'],
+  's2':['on','off','off','off','off'],
+  's3':['on','off','off','off','off'],
+  's3b':['on','on','off','off','off'],
+  's4':['off','on','off','off','off'],
+  's4-state2':['off','on','off','on','off'],
+  's4-state2b':['off','on','on','off','off'],
+  's4-state3':['off','on','off','off','off'],
+  's5':['off','off','off','on','off'],
+  's5-from-cohort':['off','off','off','on','off'],
+  's6':['off','on','on','off','off'],
+  's7':['off','on','on','off','off'],
+  's8':['on','on','off','off','off'],
+  's9':['off','on','off','off','off'],
+  's10':['off','off','off','on','off'],
+  's11':['off','on','off','off','on'],
+  's12':['on','off','off','off','off'],
+};
+const ENGINE_DATA=[
+  {name:'Coaching',full:'Discovery / Articulation / AI Coach',sub:'Core coaching + packaging',features:[
+    {t:'Future-first AI profile generator',p:1},{t:'Readiness Dashboard',p:1},
+    {t:'Human Escalation',p:2}
+  ]},
+  {name:'Projects',full:'Verified Projects / Community',sub:'Matching + trust community',features:[
+    {t:'Launch Cohort',p:1},{t:'Verified Project Match',p:1},{t:'Corporate Outplacement B2B',p:1},{t:'Verified Founding Board',p:1}
+  ]},
+  {name:'Support',full:'Identity Rebuild',sub:'EQ / Mindset / Pivot',features:[
+    {t:'Paid Professional / Life Coaching B2B',p:2}
+  ]},
+  {name:'Contracts',full:'Contracts / Payouts / Guarantees',sub:'Financial + legal protection',features:[
+    {t:'Expivot Compact B2B',p:1},{t:'Financial Consent',p:1},
+    {t:'Dispute Resolution',p:2},{t:'Change Management',p:2}
+  ]},
+  {name:'Growth',full:'Upskilling / Showcasing / Scheduler',sub:'Growth + visibility',features:[
+    {t:'Success Journey Page',p:1},{t:'Client Verified Badge',p:1},{t:'Shadow Profile',p:1},
+    {t:'Meeting Scheduler',p:2}
+  ]},
+];
+function buildEngBar(id){
+  const states=ENGINE_MAP[id]||['off','off','off','off','off'];
+  return '<div class="eng-bar">'+ENGINE_DATA.map((e,i)=>{
+    const on=states[i]==='on';
+    const feats=e.features.map(f=>`<div class="eng-feat"><span class="eng-mark ${f.p===1?'p1':'p2'}">${f.p===1?'+':'·'}</span><span class="eng-feat-text ${f.p===1?'':'p2'}">${f.t}${f.p>1?' · P'+f.p:''}</span></div>`).join('');
+    return `<div class="eng-e">
+      <div class="eng-name ${on?'on':'off'}">${e.name}<span class="eng-i">i</span></div>
+      <div class="eng-track ${on?'on':'off'}"></div>
+      <div class="eng-tt">
+        <div class="eng-tt-top">
+          <div class="eng-tt-full">${e.full}</div>
+          <div class="eng-tt-sub">${e.sub}</div>
+        </div>
+        <div class="eng-tt-body">${feats}</div>
+      </div>
+    </div>`;
+  }).join('')+'</div>';
+}
 function show(id){
   document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
-  document.getElementById(id).classList.add('on');
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.classList.add('on');
+  const existing=el.querySelector('.eng-bar');
+  if(existing)existing.remove();
+  if(id!=='land'&&id!=='onboard'){
+    const nav=el.querySelector('.app-nav');
+    if(nav)nav.insertAdjacentHTML('afterend',buildEngBar(id));
+  }
   window.scrollTo(0,0);
 }
 
