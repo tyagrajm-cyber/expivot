@@ -424,7 +424,7 @@ textarea{resize:none}
       </div>
       <div class="checkbox-row" style="text-align:left">
         <input type="checkbox" id="tc-check" style="margin-top:2px;accent-color:var(--teal);width:16px;height:16px;flex-shrink:0;cursor:pointer">
-        <label for="tc-check" class="checkbox-lbl">I have read and agree to the Expivot <a onclick="document.getElementById('tc-modal').classList.add('on')">Platform Terms &amp; Conditions</a></label>
+        <label for="tc-check" class="checkbox-lbl">I have read and agree to the Expivot Platform <a onclick="document.getElementById('tc-modal').classList.add('on')">Terms &amp; Conditions</a></label>
       </div>
       <div id="tc-err" class="err" style="display:none;margin-top:-6px;margin-bottom:8px">Please accept the Terms &amp; Conditions to continue.</div>
       <button class="btn-primary" onclick="checkTCAndProceed()">Start building my offer →</button>
@@ -590,10 +590,10 @@ textarea{resize:none}
   </div>
   <div class="scr-body">
     <div class="scr-card">
-      <div class="scr-eyebrow">Readiness dashboard</div>
-      <div class="scr-h">Both dials must be green before go live</div>
-      <div class="scr-sub">Profile is done. Join your launch cohort to unlock go live.</div>
-      <div class="dial-row-2">
+      <div class="scr-eyebrow" style="text-align:center">Readiness dashboard</div>
+      <div class="scr-h" style="text-align:center">Both dials must be green before go live</div>
+      <div class="scr-sub" style="text-align:center">Profile is done. Join your launch cohort to unlock go live.</div>
+      <div class="dial-row-2" style="margin-left:auto;margin-right:auto">
         <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Profile</div><div class="dial-status">Complete</div></div>
         <div class="dial amber" onclick="goToS('s6')"><div class="dial-circle">!</div><div class="dial-lbl">Cohort</div><div class="dial-status">Tap to join</div></div>
       </div>
@@ -601,12 +601,11 @@ textarea{resize:none}
         <div><div style="font-size:13px;font-weight:600;color:var(--text-m)">Shadow profile</div><div style="font-size:11px;color:var(--text-l);margin-top:2px">Visible to matching algorithm · hidden from buyers</div></div>
         <div class="toggle on" onclick="this.classList.toggle('on')"></div>
       </div>
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:12px;margin-bottom:12px">
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:12px;margin-bottom:12px;text-align:center">
         <div style="font-size:12px;color:var(--text-m)">📅 Public commitment — go live by <strong style="color:var(--teal)">15 August 2026</strong> · visible to your cohort</div>
       </div>
-      <div style="font-size:13px;color:var(--teal);cursor:pointer;margin-bottom:14px" onclick="goToS('s3')">✏️ Update my offer →</div>
-      <button class="btn-primary" style="opacity:.4;cursor:not-allowed" disabled>🔒 Complete My Setup — join the cohort first</button>
-      <button class="btn-sec" style="margin-top:8px" onclick="goToS('s6')">Join launch cohort →</button>
+      <div style="font-size:13px;color:var(--teal);cursor:pointer;margin-bottom:14px;text-align:center" onclick="goToS('s3')">✏️ Update my offer →</div>
+      <button class="btn-sec" onclick="goToS('s6')">Join launch cohort →</button>
     </div>
   </div>
 </div>
@@ -642,6 +641,7 @@ textarea{resize:none}
         <div style="font-size:12px;color:var(--text-m);padding:4px 0">→ First project management basics</div>
       </div>
       <div style="background:var(--amber-l);border:1px solid var(--amber);border-radius:var(--r);padding:8px 12px;font-size:12px;color:var(--amber);margin-bottom:14px">⏱ 14-day window starts on confirmation</div>
+      <div style="background:var(--amber-l);border:1px solid var(--amber);border-radius:var(--r);padding:10px 12px;font-size:12px;color:var(--amber);line-height:1.6;margin-bottom:10px">💡 Once you confirm your place, your profile is locked — no further changes can be made to your consulting offer or profile before your first project.</div>
       <button class="btn-primary" onclick="goToS('s7')">Confirm my place →</button>
     </div>
   </div>
@@ -681,16 +681,16 @@ textarea{resize:none}
   </div>
   <div class="scr-body">
     <div class="scr-card">
-      <div class="scr-eyebrow">Readiness dashboard · all green</div>
-      <div class="scr-h">Both dials green — go live is unlocked</div>
-      <div class="dial-row-2">
+      <div class="scr-eyebrow" style="text-align:center">Readiness dashboard · Complete your setup</div>
+      <div class="scr-h" style="text-align:center">Both dials green — one step away from go live</div>
+      <div class="dial-row-2" style="margin-left:auto;margin-right:auto">
         <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Profile</div><div class="dial-status">Complete</div></div>
         <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Cohort</div><div class="dial-status">Complete</div></div>
       </div>
       <div style="background:var(--green-l);border:1px solid var(--green);border-radius:var(--rl);padding:12px;margin-bottom:14px;text-align:center">
         <div style="font-size:13px;font-weight:600;color:var(--green)">Go live by 15 August 2026 · your cohort is watching</div>
       </div>
-      <button class="btn-gold-full" onclick="goToS('s8')">Go live now →</button>
+      <button class="btn-gold-full" onclick="goToS('s8')">Complete My Setup →</button>
     </div>
   </div>
 </div>
@@ -922,7 +922,7 @@ const ENGINE_MAP={
   's9':['off','on','off','off','off'],
   's10':['off','off','off','on','off'],
   's11':['off','on','off','off','on'],
-  's12':['on','off','off','off','off'],
+  's12':['on','on','off','off','off'],
 };
 const ENGINE_DATA=[
   {name:'Coaching',full:'Discovery / Articulation / AI Coach',sub:'Core coaching + packaging',features:[
