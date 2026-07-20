@@ -286,12 +286,10 @@ textarea{resize:none}
 .ob-feat-icon{font-size:18px;margin-bottom:5px}
 .ob-feat-title{font-size:12px;font-weight:600;color:var(--teal-d);margin-bottom:2px}
 .ob-feat-desc{font-size:11px;color:var(--text-l);line-height:1.5}
-.formula-card{background:var(--gold-bg);border:1px solid #E8D5A0;border-radius:var(--rl);padding:18px;margin-bottom:14px;text-align:center}
-.formula-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:6px}
-.formula-main{font-family:var(--pjs);font-size:17px;font-weight:700;color:var(--teal-d);margin-bottom:5px}
-.formula-note{font-size:11px;color:var(--text-l);line-height:1.5}
 .checkbox-row{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1px solid var(--border);border-radius:var(--r);background:#fff;margin-bottom:14px}
 .checkbox-lbl{font-size:12px;color:var(--text-m);line-height:1.6}
+.checkbox-lbl a{color:var(--teal);text-decoration:underline;cursor:pointer;font-weight:600}
+.dial-row-2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px;max-width:340px}
 </style>
 </head>
 <body>
@@ -359,7 +357,7 @@ textarea{resize:none}
         <div class="land-block-title">How it works</div>
         <div class="step-list">
           <div class="step-item"><div class="step-num">1</div><div><div class="step-title">AI builds your offer</div><div class="step-desc">Future-first coaching surfaces hidden expertise in minutes</div></div></div>
-          <div class="step-item"><div class="step-num">2</div><div><div class="step-title">Get ready to go live</div><div class="step-desc">Financial consent + launch cohort tracked on your dashboard</div></div></div>
+          <div class="step-item"><div class="step-num">2</div><div><div class="step-title">Get ready to go live</div><div class="step-desc">Launch cohort and profile readiness tracked on your dashboard</div></div></div>
           <div class="step-item"><div class="step-num">3</div><div><div class="step-title">Projects find you</div><div class="step-desc">Verified matches — you don't apply, you're approached</div></div></div>
           <div class="step-item"><div class="step-num">4</div><div><div class="step-title">Authority compounds</div><div class="step-desc">Every project makes your profile richer and your rate stronger</div></div></div>
         </div>
@@ -380,6 +378,34 @@ textarea{resize:none}
   </div>
 </div>
 
+<!-- ════ T&C MODAL ════ -->
+<div class="modal-overlay" id="tc-modal">
+  <div class="modal-box" style="max-width:560px;max-height:80vh;overflow-y:auto">
+    <button class="modal-close" onclick="document.getElementById('tc-modal').classList.remove('on')">✕</button>
+    <div class="modal-title">Platform Terms &amp; Conditions</div>
+    <div class="modal-sub">Effective 1 August 2026 · Expivot Platform · Version 1.0</div>
+    <div style="font-size:12px;color:var(--text-m);line-height:1.8">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin:14px 0 5px">1. Platform use and eligibility</div>
+      <p>Expivot is a professional marketplace platform for mid-career independent consultants in India. By registering, you confirm you are at least 18 years of age, legally eligible to work as an independent contractor in India, and have the professional experience to offer consulting services.</p>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin:14px 0 5px">2. Independent contractor status</div>
+      <p>You are an independent professional, not an employee of Expivot. Expivot acts solely as a marketplace connector between consultants and project buyers. Nothing in this agreement creates an employment, partnership, or agency relationship between you and Expivot.</p>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin:14px 0 5px">3. Financial readiness acknowledgement</div>
+      <p>By using this platform, you confirm that you have independently assessed your personal financial readiness before transitioning to independent consulting. Expivot does not guarantee income, project availability, or continuity of work. The platform provides tools and connections — outcomes depend on your own effort, expertise, and market conditions. You acknowledge that financial readiness is entirely your personal responsibility and Expivot bears no liability for income loss or financial hardship arising from your use of the platform.</p>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin:14px 0 5px">4. Data and privacy</div>
+      <p>Your profile data, CV content, and consulting offer generated on the platform are owned by you. Expivot uses this data solely to match you with relevant project buyers. We do not sell your personal data to third parties. Profile information is shared with buyers only after you go live and only to facilitate project matching.</p>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin:14px 0 5px">5. Escrow and payment terms</div>
+      <p>For each accepted project, 50% of the agreed project fee is deposited into Expivot escrow before work begins. Escrow is released within 24 hours of milestone approval by both parties. Expivot charges a platform commission on each completed project. Direct payment arrangements that bypass the platform are a violation of these terms.</p>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin:14px 0 5px">6. Dispute resolution</div>
+      <p>In the event of a dispute between a consultant and a buyer, both parties agree to first attempt resolution through Expivot's mediation process. Expivot's decision in mediation is binding for amounts up to ₹5,00,000. Disputes above this threshold may be referred to arbitration under Indian law.</p>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin:14px 0 5px">7. Platform fee and commission</div>
+      <p>Expivot charges a commission on each project completed through the platform. Commission rates are displayed at the time of project acceptance and may vary by project size and type. Subscription plans, if applicable, are billed monthly and are non-refundable.</p>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin:14px 0 5px">8. Termination</div>
+      <p>Either party may terminate their use of the platform at any time. Termination does not affect obligations under active projects or the Expivot Compact signed for ongoing engagements. Expivot reserves the right to suspend or remove accounts that violate these terms.</p>
+    </div>
+    <button class="btn-primary" style="margin-top:16px" onclick="document.getElementById('tc-modal').classList.remove('on');document.getElementById('tc-check').checked=true;document.getElementById('tc-err').style.display='none'">I have read and accept these terms →</button>
+  </div>
+</div>
+
 <!-- ════ ONBOARDING ════ -->
 <div id="onboard" class="scr">
   <div style="background:var(--teal-d);height:4px;flex-shrink:0"></div>
@@ -391,12 +417,17 @@ textarea{resize:none}
       <div class="scr-h">You're about to build your independent consulting offer</div>
       <div class="scr-sub">Here's what happens in the next few minutes.</div>
       <div class="ob-grid">
-        <div class="ob-feat"><div class="ob-feat-icon">🧠</div><div class="ob-feat-title">AI offer builder</div><div class="ob-feat-desc">Tell us your ideal week. We surface your offer from your career.</div></div>
-        <div class="ob-feat"><div class="ob-feat-icon">📊</div><div class="ob-feat-title">Readiness dashboard</div><div class="ob-feat-desc">Three dials track your financial, cohort, and profile readiness.</div></div>
+        <div class="ob-feat"><div class="ob-feat-icon">🧠</div><div class="ob-feat-title">AI offer builder</div><div class="ob-feat-desc">Tell us your consulting vision. We surface your offer from your career.</div></div>
+        <div class="ob-feat"><div class="ob-feat-icon">📊</div><div class="ob-feat-title">Readiness dashboard</div><div class="ob-feat-desc">Two steps to go live — complete your cohort session and your profile is ready.</div></div>
         <div class="ob-feat"><div class="ob-feat-icon">🤝</div><div class="ob-feat-title">Launch cohort</div><div class="ob-feat-desc">Peers at your stage. Structured sessions. Not alone.</div></div>
         <div class="ob-feat"><div class="ob-feat-icon">🛡️</div><div class="ob-feat-title">Protected projects</div><div class="ob-feat-desc">Compact — escrow, no-poach, NDA — before any conversation.</div></div>
       </div>
-      <button class="btn-primary" onclick="goToS('s1')">Start building my offer →</button>
+      <div class="checkbox-row" style="text-align:left">
+        <input type="checkbox" id="tc-check" style="margin-top:2px;accent-color:var(--teal);width:16px;height:16px;flex-shrink:0;cursor:pointer">
+        <label for="tc-check" class="checkbox-lbl">I have read and agree to the Expivot <a onclick="document.getElementById('tc-modal').classList.add('on')">Platform Terms &amp; Conditions</a></label>
+      </div>
+      <div id="tc-err" class="err" style="display:none;margin-top:-6px;margin-bottom:8px">Please accept the Terms &amp; Conditions to continue.</div>
+      <button class="btn-primary" onclick="checkTCAndProceed()">Start building my offer →</button>
     </div>
   </div>
 </div>
@@ -410,16 +441,16 @@ textarea{resize:none}
   </div>
   <div class="scr-body">
     <div class="scr-card">
-      <div class="scr-eyebrow">Your future vision</div>
-      <div class="scr-h">"What does your ideal week look like as an independent professional?"</div>
-      <div class="scr-sub">Don't think about what's realistic yet — describe what you'd love your independent working life to look like.</div>
+      <div class="scr-eyebrow">Your consulting vision</div>
+      <div class="scr-h">Imagine your ideal consulting life. What domain are you working in, who are your clients, what projects excite you most, and how many days a week do you want to work?</div>
+      <div class="scr-sub">Don't filter for what seems realistic — describe the consulting life you actually want to build.</div>
       <div class="tabs">
         <button class="tab on" onclick="stab('type',this)" id="tab-type">✍️ Type answer <span class="req-star">*</span></button>
         <button class="tab" onclick="stab('cv',this)" id="tab-cv">📄 Upload CV</button>
         <button class="tab" onclick="stab('li',this)" id="tab-li">💼 LinkedIn</button>
       </div>
       <div id="tp-type" class="tab-panel on">
-        <div class="field-note">Required — describe who you'd work with, what problems you'd solve, preferred engagement style</div>
+        <div class="field-note">Required — describe your domain, ideal clients, the kind of projects that excite you, and how many days a week you want to work</div>
         <div class="voice-wrap">
           <textarea id="s1-text" rows="6" placeholder="For example: I'd like to work with 2–3 clients at a time on clearly scoped projects — ideally in operations, customer experience, or process improvement. I prefer outcome-based engagements where I can apply my expertise independently, deliver measurable results, and move to the next challenge. I'm comfortable working across industries and would like to set my own schedule as long as I meet project deadlines."></textarea>
           <button class="voice-btn" id="voice-btn" onclick="toggleVoice()">🎙 Speak</button>
@@ -499,6 +530,7 @@ textarea{resize:none}
             <div class="impact-lbl opt">Impact story 2 — optional</div>
             <textarea class="impact-ta" id="i2" placeholder="Add a second story from a different domain or project to give the AI more to work with..."></textarea>
           </div>
+          <div style="background:var(--amber-l);border:1px solid var(--amber);border-radius:var(--r);padding:10px 12px;font-size:12px;color:var(--amber);line-height:1.6;margin-top:8px;margin-bottom:4px">💡 An up-to-date CV helps the AI move beyond the obvious — your offer becomes more specific, more credible, and harder to replicate. If what you shared in Step 1 is outdated, go back and replace it — the quality of your offer depends directly on the quality of your input.</div>
           <button class="btn-primary" style="margin-top:4px" onclick="genOffer()">⚡ Generate my offer</button>
           <div id="e3" class="err" style="display:none"></div>
         </div>
@@ -559,12 +591,11 @@ textarea{resize:none}
   <div class="scr-body">
     <div class="scr-card">
       <div class="scr-eyebrow">Readiness dashboard</div>
-      <div class="scr-h">All three dials must be green before go live</div>
-      <div class="scr-sub">Profile is done. Complete financial consent and launch cohort — both run simultaneously, in any order.</div>
-      <div class="dial-row">
+      <div class="scr-h">Both dials must be green before go live</div>
+      <div class="scr-sub">Profile is done. Join your launch cohort to unlock go live.</div>
+      <div class="dial-row-2">
         <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Profile</div><div class="dial-status">Complete</div></div>
-        <div class="dial amber" onclick="goToS('s5')"><div class="dial-circle">!</div><div class="dial-lbl">Financial</div><div class="dial-status">Tap to complete</div></div>
-        <div class="dial amber" onclick="ST.cohortFirst=true;goToS('s6')"><div class="dial-circle">!</div><div class="dial-lbl">Cohort</div><div class="dial-status">Tap to join</div></div>
+        <div class="dial amber" onclick="goToS('s6')"><div class="dial-circle">!</div><div class="dial-lbl">Cohort</div><div class="dial-status">Tap to join</div></div>
       </div>
       <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between">
         <div><div style="font-size:13px;font-weight:600;color:var(--text-m)">Shadow profile</div><div style="font-size:11px;color:var(--text-l);margin-top:2px">Visible to matching algorithm · hidden from buyers</div></div>
@@ -574,116 +605,8 @@ textarea{resize:none}
         <div style="font-size:12px;color:var(--text-m)">📅 Public commitment — go live by <strong style="color:var(--teal)">15 August 2026</strong> · visible to your cohort</div>
       </div>
       <div style="font-size:13px;color:var(--teal);cursor:pointer;margin-bottom:14px" onclick="goToS('s3')">✏️ Update my offer →</div>
-      <button class="btn-primary" style="opacity:.4;cursor:not-allowed" disabled>🔒 Go live — complete both dials first</button>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
-        <button class="btn-sec" onclick="goToS('s5')">Financial consent →</button>
-        <button class="btn-sec" onclick="ST.cohortFirst=true;goToS('s6')">Join cohort →</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════ S5 ════ -->
-<div id="s5" class="scr">
-  <div class="app-nav">
-    <button class="app-logo" onclick="resetAndHome()">Expi<em>vot</em></button>
-    <div class="app-progress"><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-step-label">Parallel track A</div></div>
-    <div style="width:32px"></div>
-  </div>
-  <div class="scr-body">
-    <div class="scr-card" style="max-width:480px">
-      <button class="back-link" onclick="goToS('s4')">← Back to dashboard</button>
-      <div class="scr-eyebrow">Financial consent · parallel track A</div>
-      <div class="scr-h">Confirm your financial runway</div>
-      <div class="scr-sub">Not a tracker. Not a gate. Informed consent only — you control your own financial plan.</div>
-      <div class="formula-card">
-        <div class="formula-label">Suggested runway formula</div>
-        <div class="formula-main">(Monthly outgoings × 1.2) × 6</div>
-        <div class="formula-note">This is the recommended minimum buffer before going live. You decide what makes sense for your situation.</div>
-      </div>
-      <div class="checkbox-row">
-        <input type="checkbox" id="fin-check" style="margin-top:2px;accent-color:var(--teal);width:16px;height:16px;flex-shrink:0">
-        <label for="fin-check" class="checkbox-lbl">I understand the suggested runway and consent to proceeding. I acknowledge that financial readiness is my own responsibility.</label>
-      </div>
-      <button class="btn-primary" onclick="checkFinConsent('fin-check','e-fin','s4-state2')">Confirm consent → Dial 2 turns green</button>
-      <div id="e-fin" class="err" style="display:none">Please check the box to confirm your consent before proceeding.</div>
-      <div style="font-size:11px;color:var(--text-l);text-align:center;margin-top:6px">One-way — cannot be undone</div>
-    </div>
-  </div>
-</div>
-
-<!-- ════ S4 STATE 2 ════ -->
-<div id="s4-state2" class="scr">
-  <div class="app-nav">
-    <button class="app-logo" onclick="resetAndHome()">Expi<em>vot</em></button>
-    <div class="app-progress"><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-step-label">Readiness — 1 done</div></div>
-    <div style="width:32px"></div>
-  </div>
-  <div class="scr-body">
-    <div class="scr-card">
-      <div class="scr-eyebrow">Readiness dashboard · state 2</div>
-      <div class="scr-h">Financial consent done — one more to go</div>
-      <div class="scr-sub">Join the launch cohort to unlock go live. You can also complete financial consent first if you haven't yet.</div>
-      <div class="dial-row">
-        <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Profile</div><div class="dial-status">Complete</div></div>
-        <div class="dial green" id="s4s2-fin-dial"><div class="dial-circle">✓</div><div class="dial-lbl">Financial</div><div class="dial-status">Complete</div></div>
-        <div class="dial amber" onclick="ST.cohortFirst=false;goToS('s6')"><div class="dial-circle">!</div><div class="dial-lbl">Cohort</div><div class="dial-status">Tap to join</div></div>
-      </div>
-      <div style="font-size:13px;color:var(--teal);cursor:pointer;margin-bottom:14px" onclick="goToS('s3')">✏️ Update my offer →</div>
-      <button class="btn-primary" style="opacity:.4;cursor:not-allowed" disabled>🔒 Go live — join cohort first</button>
-      <button class="btn-sec" onclick="ST.cohortFirst=false;goToS('s6')">Join launch cohort →</button>
-    </div>
-  </div>
-</div>
-
-<!-- ════ S4 STATE 2B — cohort done first ════ -->
-<div id="s4-state2b" class="scr">
-  <div class="app-nav">
-    <button class="app-logo" onclick="resetAndHome()">Expi<em>vot</em></button>
-    <div class="app-progress"><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-step-label">Readiness — 1 done</div></div>
-    <div style="width:32px"></div>
-  </div>
-  <div class="scr-body">
-    <div class="scr-card">
-      <div class="scr-eyebrow">Readiness dashboard · state 2</div>
-      <div class="scr-h">Cohort done — complete financial consent to go live</div>
-      <div class="scr-sub">One more step — confirm your financial runway to unlock go live.</div>
-      <div class="dial-row">
-        <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Profile</div><div class="dial-status">Complete</div></div>
-        <div class="dial amber" onclick="goToS('s5-from-cohort')"><div class="dial-circle">!</div><div class="dial-lbl">Financial</div><div class="dial-status">Tap to complete</div></div>
-        <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Cohort</div><div class="dial-status">Complete</div></div>
-      </div>
-      <div style="font-size:13px;color:var(--teal);cursor:pointer;margin-bottom:14px" onclick="goToS('s3')">✏️ Update my offer →</div>
-      <button class="btn-primary" style="opacity:.4;cursor:not-allowed" disabled>🔒 Go live — complete financial consent first</button>
-      <button class="btn-sec" onclick="goToS('s5-from-cohort')">Complete financial consent →</button>
-    </div>
-  </div>
-</div>
-
-<!-- ════ S5 FROM COHORT ════ -->
-<div id="s5-from-cohort" class="scr">
-  <div class="app-nav">
-    <button class="app-logo" onclick="resetAndHome()">Expi<em>vot</em></button>
-    <div class="app-progress"><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-step-label">Parallel track A</div></div>
-    <div style="width:32px"></div>
-  </div>
-  <div class="scr-body">
-    <div class="scr-card" style="max-width:480px">
-      <button class="back-link" onclick="goToS('s4-state2b')">← Back to dashboard</button>
-      <div class="scr-eyebrow">Financial consent · parallel track A</div>
-      <div class="scr-h">Confirm your financial runway</div>
-      <div class="scr-sub">Last step before go live — informed consent only.</div>
-      <div class="formula-card">
-        <div class="formula-label">Suggested runway formula</div>
-        <div class="formula-main">(Monthly outgoings × 1.2) × 6</div>
-        <div class="formula-note">This is the recommended minimum buffer before going live. You decide what makes sense for your situation.</div>
-      </div>
-      <div class="checkbox-row">
-        <input type="checkbox" id="fin-check-2" style="margin-top:2px;accent-color:var(--teal);width:16px;height:16px;flex-shrink:0">
-        <label for="fin-check-2" class="checkbox-lbl">I understand the suggested runway and consent to proceeding.</label>
-      </div>
-      <button class="btn-primary" onclick="checkFinConsent('fin-check-2','e-fin-2','s4-state3')">Confirm consent → All dials green</button>
-      <div id="e-fin-2" class="err" style="display:none">Please check the box to confirm your consent before proceeding.</div>
+      <button class="btn-primary" style="opacity:.4;cursor:not-allowed" disabled>🔒 Complete My Setup — join the cohort first</button>
+      <button class="btn-sec" style="margin-top:8px" onclick="goToS('s6')">Join launch cohort →</button>
     </div>
   </div>
 </div>
@@ -697,7 +620,7 @@ textarea{resize:none}
   </div>
   <div class="scr-body">
     <div class="scr-card" style="max-width:480px">
-      <button class="back-link" id="s6-back" onclick="ST.cohortFirst?goToS('s4'):document.getElementById('s4-state2').classList.contains('on')?goToS('s4-state2'):goToS('s4')">← Back to dashboard</button>
+      <button class="back-link" id="s6-back" onclick="goToS('s4')">← Back to dashboard</button>
       <div class="scr-eyebrow">Launch cohort · parallel track B</div>
       <div class="scr-h">Join your launch cohort</div>
       <div class="scr-sub">4–5 peers at your exact stage. Peer facilitator. Structured sessions. Not alone in the transition.</div>
@@ -753,16 +676,15 @@ textarea{resize:none}
 <div id="s4-state3" class="scr">
   <div class="app-nav">
     <button class="app-logo" onclick="resetAndHome()">Expi<em>vot</em></button>
-    <div class="app-progress"><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-step-label">All green</div></div>
+    <div class="app-progress"><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-pd on"></div><div class="app-step-label">All green</div></div>
     <div style="width:32px"></div>
   </div>
   <div class="scr-body">
     <div class="scr-card">
       <div class="scr-eyebrow">Readiness dashboard · all green</div>
-      <div class="scr-h">All three dials green — go live is unlocked</div>
-      <div class="dial-row">
+      <div class="scr-h">Both dials green — go live is unlocked</div>
+      <div class="dial-row-2">
         <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Profile</div><div class="dial-status">Complete</div></div>
-        <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Financial</div><div class="dial-status">Complete</div></div>
         <div class="dial green"><div class="dial-circle">✓</div><div class="dial-lbl">Cohort</div><div class="dial-status">Complete</div></div>
       </div>
       <div style="background:var(--green-l);border:1px solid var(--green);border-radius:var(--rl);padding:12px;margin-bottom:14px;text-align:center">
@@ -785,10 +707,9 @@ textarea{resize:none}
       <div style="width:72px;height:72px;border-radius:50%;background:var(--teal-l);border:3px solid var(--teal);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 16px">🚀</div>
       <div class="scr-eyebrow">This is the moment</div>
       <div class="scr-h">You are ready to go live on Expivot</div>
-      <div class="scr-sub">Offer packaged. Runway confirmed. Cohort session done. Your first projects are waiting.</div>
+      <div class="scr-sub">Offer packaged. Cohort session done. Your first projects are waiting.</div>
       <div style="display:flex;justify-content:center;gap:18px;margin-bottom:20px">
         <div style="text-align:center"><div style="width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 4px">✓</div><div style="font-size:11px;color:var(--text-l)">Profile</div></div>
-        <div style="text-align:center"><div style="width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 4px">✓</div><div style="font-size:11px;color:var(--text-l)">Financial</div></div>
         <div style="text-align:center"><div style="width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 4px">✓</div><div style="font-size:11px;color:var(--text-l)">Cohort</div></div>
       </div>
       <div style="background:var(--teal-l);border:1px solid var(--teal);border-radius:var(--r);padding:10px 14px;font-size:12px;color:var(--teal);margin-bottom:18px">🤝 Go live by 15 August 2026 — your cohort is notified</div>
@@ -947,14 +868,14 @@ textarea{resize:none}
   </div>
 </div>
 <script>
-const ST={s1:'',cv:'',li:'',brief:null,i1:'',i2:'',refine:'',chips:{},profile:null,cohortFirst:false,selectedProject:null,s9projects:[]};
+const ST={s1:'',cv:'',li:'',brief:null,i1:'',i2:'',refine:'',chips:{},profile:null,selectedProject:null,s9projects:[]};
 
-function checkFinConsent(checkId,errId,dest){
-  const cb=document.getElementById(checkId);
-  const e=document.getElementById(errId);
+function checkTCAndProceed(){
+  const cb=document.getElementById('tc-check');
+  const e=document.getElementById('tc-err');
   if(!cb.checked){e.style.display='block';cb.addEventListener('change',function(){if(this.checked)e.style.display='none';},{once:true});return;}
   e.style.display='none';
-  goToS(dest);
+  goToS('s1');
 }
 
 function clearE1(){
@@ -971,7 +892,9 @@ function clearCV(){
 }
 
 function resetAndHome(){
-  Object.assign(ST,{s1:'',cv:'',li:'',brief:null,i1:'',i2:'',refine:'',chips:{},profile:null,cohortFirst:false,selectedProject:null,s9projects:[]});
+  Object.assign(ST,{s1:'',cv:'',li:'',brief:null,i1:'',i2:'',refine:'',chips:{},profile:null,selectedProject:null,s9projects:[]});
+  const tcCb=document.getElementById('tc-check');if(tcCb)tcCb.checked=false;
+  const tcErr=document.getElementById('tc-err');if(tcErr)tcErr.style.display='none';
   ['s1-text','s1-cv','s1-li','i1','i2','refinput','s3b-refinput'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   const cd=document.getElementById('cv-done');if(cd){cd.textContent='';cd.style.display='none';}
   const cvf=document.getElementById('cvf');if(cvf)cvf.value='';
@@ -992,11 +915,7 @@ const ENGINE_MAP={
   's3':['on','off','off','off','off'],
   's3b':['on','off','off','off','off'],
   's4':['on','off','off','off','off'],
-  's4-state2':['on','off','off','on','off'],
-  's4-state2b':['on','on','off','off','off'],
   's4-state3':['on','off','off','off','off'],
-  's5':['on','off','off','on','off'],
-  's5-from-cohort':['on','off','off','on','off'],
   's6':['on','on','off','off','off'],
   's7':['on','on','off','off','off'],
   's8':['on','on','off','off','off'],
@@ -1016,8 +935,8 @@ const ENGINE_DATA=[
   {name:'Support',full:'Identity Rebuild',sub:'EQ / Mindset / Pivot',features:[
     {t:'Paid Professional / Life Coaching B2B',p:2}
   ]},
-  {name:'Contracts',full:'Contracts / Payouts / Guarantees',sub:'Financial + legal protection',features:[
-    {t:'Expivot Compact B2B',p:1},{t:'Financial Consent',p:1},
+  {name:'Contracts',full:'Contracts / Payouts / Guarantees',sub:'Legal + payment protection',features:[
+    {t:'Expivot Compact B2B',p:1},
     {t:'Dispute Resolution',p:2},{t:'Change Management',p:2}
   ]},
   {name:'Growth',full:'Upskilling / Showcasing / Scheduler',sub:'Growth + visibility',features:[
@@ -1374,16 +1293,12 @@ function loadS11(){
 }
 
 function handleS7Next(){
-  if(ST.cohortFirst){goToS('s4-state2b');}
-  else{goToS('s4-state3');}
+  goToS('s4-state3');
 }
 
 function goToS(id){
   if(id==='s3b'){loadS3B();return;}
-  if(id==='s6'||id==='s6-from-s4'){
-    if(id==='s6-from-s4')ST.cohortFirst=true;
-    show('s6');return;
-  }
+  if(id==='s6'){show('s6');return;}
   if(id==='s9'){loadS9Projects();return;}
   show(id);
 }
